@@ -6,7 +6,13 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 20:54:57 by flima             #+#    #+#             */
-/*   Updated: 2025/07/10 20:54:58 by flima            ###   ########.fr       */
+/*   Updated: 2025/07/14 11:16:45 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
+
+Zombie*	newZombie(std::string name)
+{
+	return new Zombie(name);
+}

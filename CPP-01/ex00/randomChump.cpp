@@ -6,7 +6,14 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 20:55:00 by flima             #+#    #+#             */
-/*   Updated: 2025/07/10 20:55:01 by flima            ###   ########.fr       */
+/*   Updated: 2025/07/14 11:18:14 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
+
+void	randomChump(std::string name)
+{
+	Zombie z(name);
+	z.announce();
+}
