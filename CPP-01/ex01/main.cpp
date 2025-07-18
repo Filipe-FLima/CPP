@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 11:41:39 by flima             #+#    #+#             */
-/*   Updated: 2025/07/17 13:16:07 by flima            ###   ########.fr       */
+/*   Updated: 2025/07/18 11:12:28 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	main(void)
 	name = getValidInput("Pick a zombie name!");
 	hordeSize = getHordeSize();
 	horde = zombieHorde(hordeSize, name);
-	for (int i = 0; i < hordeSize; i++)
+	for (int i = 0; i < hordeSize; i++){
 		horde[i].announce();
-	delete horde;
-	//need fix leak and test
+	}
+	delete[] horde;
 	return 0;
 }

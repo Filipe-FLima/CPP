@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 11:40:15 by flima             #+#    #+#             */
-/*   Updated: 2025/07/18 11:08:35 by flima            ###   ########.fr       */
+/*   Created: 2025/07/18 12:02:47 by flima             #+#    #+#             */
+/*   Updated: 2025/07/18 12:05:35 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
 
-Zombie* zombieHorde(int N, std::string name)
+#ifndef WEAPON_H
+#define WEAPON_H
+
+# include <iostream>
+ 
+class	Weapon
 {
-	Zombie* horde = new Zombie[N];
+	private:
+		std::string	type;	
 
-	for (int i = 0; i < N; i++)
-		horde[i].setName(name);
-	return horde;
+	public:
+	
 }
+
+#endif
