@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 11:41:39 by flima             #+#    #+#             */
-/*   Updated: 2025/07/18 11:12:28 by flima            ###   ########.fr       */
+/*   Updated: 2025/07/19 18:09:51 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	getHordeSize(void)
 }
 int	main(void)
 {
-	Zombie* horde;
+	Zombie* 	horde;
 	std::string name;
 	int			hordeSize;
 	

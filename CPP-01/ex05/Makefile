@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: flima <flima@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/18 12:02:45 by flima             #+#    #+#              #
-#    Updated: 2025/07/19 18:25:44 by flima            ###   ########.fr        #
+#    Created: 2025/07/20 19:31:41 by flima             #+#    #+#              #
+#    Updated: 2025/07/20 19:31:59 by flima            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Violence
+NAME = Harl2.0
 
 RESET   = \033[0m
 GREEN   = \033[32m
@@ -21,7 +21,7 @@ CPPFLAGS = -Wall -Wextra -Werror -g
 CPPFLAGS += -std=c++11
 CPPFLAGS += -fsanitize=address
 
-SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRCS = main.cpp Harl.cpp
 OBJS_DIR = objs/
 OBJS_O = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_O))
