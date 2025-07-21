@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 18:45:06 by flima             #+#    #+#             */
-/*   Updated: 2025/07/21 14:59:03 by flima            ###   ########.fr       */
+/*   Updated: 2025/07/21 17:09:25 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,46 @@
 
 void Harl::debug(void)
 {
-	std::cout << std::endl << "I love having extra bacon for my 7XL-double-cheese-triple"
+	std::cout << "[ DEBUG ]\n" << "I love having extra bacon for my 7XL-double-cheese-triple"
 		"-pickle-special-ketchup burger. I really do!\n" << std::endl;
 }
 
 void Harl::info(void)
 {
-	std::cout << std::endl << "I cannot believe adding extra bacon costs more money. You did not put enough"
+	std::cout << "[ INFO ]\n" << "I cannot believe adding extra bacon costs more money. You did not put enough"
 	 " bacon in my burger! If you did, I would not be asking for more!\n" << std::endl;
 }
 
 void Harl::warning(void)
 {
-	std::cout << std::endl << "I think I deserve to have some extra bacon for free. I have been coming for"
+	std::cout << "[ WARNING ]\n" << "I think I deserve to have some extra bacon for free. I have been coming for"
 		" years, whereas you started working here just last month.\n" << std::endl;
 }
 
 void Harl::error(void)
 {
-	std::cout << std::endl << "This is unacceptable! I want to speak to the manager now.\n" << std::endl;
+	std::cout << "[ ERROR ]\n" << "This is unacceptable! I want to speak to the manager now.\n" << std::endl;
 }
 
-void Harl::complain(std::string level)
+void Harl::complain(Levels level)
 {
-	void (Harl::*funcs[])(){
-		&Harl::debug,
-		&Harl::info,
-		&Harl::warning,
-		&Harl::error,
-	};
-
-	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	for (size_t i = 0; i < 4; i++)
+	switch (level)
 	{
-		if (levels[i] == level){
-			(this->*funcs[i])();
-			return ;
-		}
+	case MOANER:
+		std::cout << "[ Probably complaining about insignificant problems ]" <<std::endl;
+		break;
+	case DEBUG:
+		debug();
+		[[fallthrough]];
+	case INFO:
+		info();
+		[[fallthrough]];
+	case WARNING:
+		warning();
+		[[fallthrough]];
+	case ERROR:
+		error();
+		break;
 	}
-	std::cout << "Level not found" <<std::endl;
 }
+
