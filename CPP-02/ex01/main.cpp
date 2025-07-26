@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 21:06:40 by flima             #+#    #+#             */
-/*   Updated: 2025/07/26 17:17:50 by flima            ###   ########.fr       */
+/*   Updated: 2025/07/26 21:15:47 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	main(void)
 {
-	Fixed a;
-	Fixed b(a);
-	Fixed c;
+	Fixed a(5);
+	// Fixed b(a);
+	// Fixed c;
 	
-	c = b;
+	// c = b;
 
 	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
+	// std::cout << b.getRawBits() << std::endl;
+	// std::cout << c.getRawBits() << std::endl;
 
 	return 0;
 }
