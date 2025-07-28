@@ -47,4 +47,3 @@ void Fixed::setRawBits(int const raw)
 	this->fixedPointN = raw;
 }
 
-
