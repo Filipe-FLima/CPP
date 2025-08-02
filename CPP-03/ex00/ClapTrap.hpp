@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/31 11:29:27 by flima             #+#    #+#             */
+/*   Updated: 2025/08/02 19:58:44 by flima            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CLAPTRAP_H
+# define CLAPTRAP_H
+
+# include <iostream>
+#include <iomanip>
+
+# define STATS 10
+# define ATK 0.5
+# define ENERGY 0.2	
+
+
+class	ClapTrap
+{
+	private:
+		std::string		name;
+		unsigned int	hitPoints;
+		unsigned int	energyPoints;
+		unsigned int	attackDamage;
+		
+	
+	public:
+		ClapTrap();
+		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap& other);
+		ClapTrap& operator=(const ClapTrap& other);
+		~ClapTrap();
+		
+		void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+
+		const std::string&	getName() const;
+		unsigned int		getHitPoints();
+		unsigned int		getEnergyPoints();
+		unsigned int		getAttackDamage();
+};
+
+
+
+#endif
