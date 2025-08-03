@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:31 by flima             #+#    #+#             */
-/*   Updated: 2025/08/02 20:01:53 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/03 15:46:36 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	handleClapB(ClapTrap& A, ClapTrap& B)
 {
 	std::string	command;
 	
-	std::cout << "Give a one of the following commands to " << A.getName()
+	std::cout << "Give one of the following commands to " << A.getName()
 		 << ": ATTACK or REPAIR " << std::endl;
 	std::getline(std::cin, command);
 	if (command == "ATTACK")
 	{
-		if (B.getEnergyPoints() != 0)
-			A.takeDamage(B.getAttackDamage());
 		B.attack(A.getName());
+		if (!B.checkEnergy())
+			A.takeDamage(B.getAttackDamage());
 	}
 	else if (command == "REPAIR")
 		B.beRepaired(STATS * 0.1);
@@ -33,14 +33,14 @@ void	handleClapA(ClapTrap& A, ClapTrap& B)
 {
 	std::string	command;
 	
-	std::cout << "Give a one of the following commands to " << B.getName()
+	std::cout << "Give one of the following commands to " << B.getName()
 		 << ": ATTACK or REPAIR " << std::endl;
 	std::getline(std::cin, command);
 	if (command == "ATTACK")
 	{
-		if (A.getEnergyPoints() != 0)
-			B.takeDamage(A.getAttackDamage());
 		A.attack(B.getName());
+		if (!A.checkEnergy())
+			B.takeDamage(A.getAttackDamage());
 	}
 	else if (command == "REPAIR")
 		A.beRepaired(STATS * 0.1);
@@ -52,8 +52,7 @@ int	main(void)
 	ClapTrap B("Minion");
 	std::string	name;
 
-	while ((A.getEnergyPoints() != 0 && A.getHitPoints() != 0)  ||
-		(B.getEnergyPoints() != 0 && B.getHitPoints() != 0) )
+	while ((A.is_alive() && B.is_alive()))
 	{
 		std::cout << "\nClapTraps stats\n\n" << std::setw(10) << std::left << "ClapTrap" << "|"
 			<< std::setw(10) << std::left << "Hit Points" << "|" << std::setw(10)
@@ -70,6 +69,12 @@ int	main(void)
 			handleClapA(A, B);
 		else if (name == "B")
 			handleClapB(A, B);
-	}	
-	
+	}
+	if (!A.is_alive() && !B.is_alive())
+		std::cout << "\nBoth ClapTraps have been destroyed in battle!\n" << std::endl;
+	else if (!A.is_alive())
+		std::cout << "\nClapTrap A has fallen. ClapTrap B is victorious!\n" << std::endl;
+	else
+		std::cout << "\nClapTrap B has fallen. ClapTrap A is victorious!\n" << std::endl;
+	return 0;
 }

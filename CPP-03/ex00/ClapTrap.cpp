@@ -14,13 +14,15 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : name(""), hitPoints(STATS), 
-	energyPoints(STATS * ENERGY), attackDamage(STATS * ATK)  
+	energyPoints(STATS * ENERGY), attackDamage(STATS * ATK),
+	outOfEnergy(false)
 {
 	std::cout << "Default constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : name(name), hitPoints(STATS), 
-	energyPoints(STATS * ENERGY), attackDamage(STATS * ATK) 
+	energyPoints(STATS * ENERGY), attackDamage(STATS * ATK),
+	outOfEnergy(false)
 {
 	std::cout << "Name constructor called." << std::endl;
 }
@@ -55,11 +57,14 @@ void ClapTrap::attack(const std::string &target)
 	if (energyPoints != 0)
 	{
 		energyPoints--;
-		std::cout << "ClapTrap " << name << " attacks ClapTrap " << target << " causing "
+		std::cout << "\nClapTrap " << name << " attacks ClapTrap " << target << " causing "
 			<< attackDamage << " points of damage." << std::endl; 
 	}
 	else
-		std::cout << "ClapTrap " << name << "is out of energy points, it can not attack." << std::endl;
+	{
+		std::cout << "\nClapTrap " << name << " is out of energy points, it can not attack." << std::endl;
+		outOfEnergy = true;
+	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -73,12 +78,11 @@ void ClapTrap::takeDamage(unsigned int amount)
 		else
 			damage = hitPoints;
 		hitPoints -= damage;
-		std::cout << "ClapTrap " << name << " took " << damage << " points of damage." << std::endl
+		std::cout << "\nClapTrap " << name << " took " << damage << " points of damage." << std::endl
 			<< "ClapTrap " << name << " has " << getHitPoints() << " hitPoints" << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << name << " lost all its hitPoints." << std::endl;
-
+		std::cout << "\nClapTrap " << name << " has been knocked out!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -87,17 +91,22 @@ void ClapTrap::beRepaired(unsigned int amount)
 	{
 		hitPoints += amount;
 		energyPoints--;
-		std::cout << "ClapTrap " << name << " repaired " << amount << " points of hitPoints." << std::endl
+		std::cout << "\nClapTrap " << name << " repaired " << amount << " points of hitPoints." << std::endl
 			<< "ClapTrap " << name << " has " << getEnergyPoints() << " energy points" << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << name << "is out of energy points"
+		std::cout << "\nClapTrap " << name << " is out of energy points"
 		", it can not be repaired." << std::endl;
 }
 
 const std::string &ClapTrap::getName() const
 {
 	return name;
+}
+
+bool ClapTrap::checkEnergy()
+{
+	return outOfEnergy;
 }
 
 unsigned int ClapTrap::getHitPoints()
@@ -115,3 +124,9 @@ unsigned int ClapTrap::getAttackDamage()
 	return attackDamage;
 }
 
+bool ClapTrap::is_alive()
+{
+	if (getEnergyPoints() == 0 && getHitPoints() == 0)
+		return false;
+	return true;
+}

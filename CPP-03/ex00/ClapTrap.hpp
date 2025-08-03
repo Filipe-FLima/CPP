@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:27 by flima             #+#    #+#             */
-/*   Updated: 2025/08/02 19:58:44 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/03 15:31:17 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define STATS 10
 # define ATK 0.5
-# define ENERGY 0.2	
+# define ENERGY 0.3	
 
 
 class	ClapTrap
@@ -28,6 +28,7 @@ class	ClapTrap
 		unsigned int	hitPoints;
 		unsigned int	energyPoints;
 		unsigned int	attackDamage;
+		bool			outOfEnergy;
 		
 	
 	public:
@@ -42,9 +43,11 @@ class	ClapTrap
 		void beRepaired(unsigned int amount);
 
 		const std::string&	getName() const;
+		bool				checkEnergy();
 		unsigned int		getHitPoints();
 		unsigned int		getEnergyPoints();
 		unsigned int		getAttackDamage();
+		bool				is_alive();
 };
 
 
