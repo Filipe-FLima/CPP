@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:27 by flima             #+#    #+#             */
-/*   Updated: 2025/08/05 21:07:53 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/06 19:07:59 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # define STATS 10
 # define ATK 0
 # define ENERGY 1
-# define REPAIR 0.1
+# define REPAIR 0.1	
 
 
 class	ClapTrap
 {
-	private:
+	protected:
 		std::string		name;
 		unsigned int	hitPoints;
 		unsigned int	energyPoints;
@@ -39,7 +39,7 @@ class	ClapTrap
 		ClapTrap& operator=(const ClapTrap& other);
 		~ClapTrap();
 		
-		void attack(const std::string& target);
+		virtual void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
