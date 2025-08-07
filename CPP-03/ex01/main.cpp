@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:31 by flima             #+#    #+#             */
-/*   Updated: 2025/08/06 19:40:55 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/07 20:39:18 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handleScavB(ScavTrap& A, ScavTrap& B)
 {
 	std::string	command;
 	
-	std::cout << "Give one of the following commands to " << A.getName()
+	std::cout << "Give one of the following commands to " << B.getName()
 		 << ": ATTACK or REPAIR " << std::endl;
 	std::getline(std::cin, command);
 	if (command == "ATTACK")
@@ -33,7 +33,7 @@ void	handleScavA(ScavTrap& A, ScavTrap& B)
 {
 	std::string	command;
 	
-	std::cout << "Give one of the following commands to " << B.getName()
+	std::cout << "Give one of the following commands to " << A.getName()
 		 << ": ATTACK or REPAIR " << std::endl;
 	std::getline(std::cin, command);
 	if (command == "ATTACK")

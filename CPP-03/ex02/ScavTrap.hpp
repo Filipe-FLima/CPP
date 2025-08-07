@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:04:56 by flima             #+#    #+#             */
-/*   Updated: 2025/08/07 20:28:13 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/07 20:41:52 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define HP 10
 # define ATTACK 2
-# define ENGY 5
+# define ENGY 0.6
 # define REPAIR_SCAV 1
 	
 class ScavTrap : public ClapTrap
