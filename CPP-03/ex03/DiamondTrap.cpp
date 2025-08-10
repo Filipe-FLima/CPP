@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 14:04:15 by flima             #+#    #+#             */
-/*   Updated: 2025/08/10 15:26:54 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/10 21:09:45 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(o
 	name = other.name;
 }
 
-DiamondTrap DiamondTrap::operator=(const DiamondTrap &other)
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap &other)
 {
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);
 		name = other.name;
-		std::cout << "DiamondTrap copy assignment called." << std::endl;
+		std::cout << "DiamondTrap copy assignment constructor called." << std::endl;
 	}
 	return *this;
 }

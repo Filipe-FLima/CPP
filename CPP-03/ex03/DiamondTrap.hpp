@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 20:46:58 by flima             #+#    #+#             */
-/*   Updated: 2025/08/10 15:26:43 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/10 20:59:05 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class DiamondTrap : public ScavTrap , public FragTrap
 		DiamondTrap();
 		DiamondTrap(std::string name);
 		DiamondTrap(const DiamondTrap& other);
-		DiamondTrap	operator=(const DiamondTrap& other);
+		DiamondTrap& operator=(const DiamondTrap& other);
 		~DiamondTrap();
 		const std::string&	getDiamondName() const;
 		void 	attack(const std::string& target) override;

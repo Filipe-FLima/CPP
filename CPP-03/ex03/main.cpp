@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:31 by flima             #+#    #+#             */
-/*   Updated: 2025/08/10 15:27:47 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/10 21:01:50 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,15 @@ int	main(void)
 {
 	DiamondTrap A("Clappy");
 	FragTrap B("Minion");
-	// DiamondTrap C;
+	DiamondTrap C;
 
-	// C = A;
+	C = A;
 	std::string	input;
 
+	std::cout << C.getDiamondName() << std::endl;
+	C.whoAmI();
+	C.highFivesGuys();
+	C.guardGate();
 	while ((A.is_alive() && B.is_alive()))
 	{
 		std::cout << "\nRobots stats\n\n" << std::setw(10) << std::left << "Robots" << "|"
@@ -79,9 +83,5 @@ int	main(void)
 		std::cout << "\nA has fallen. B is victorious!\n" << std::endl;
 	else
 		std::cout << "\nB has fallen. A is victorious!\n" << std::endl;
-	// C.whoAmI();
-	// C.highFivesGuys();
-	// C.guardGate();
-	
 	return 0;
 }

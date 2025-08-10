@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 20:07:32 by flima             #+#    #+#             */
-/*   Updated: 2025/08/07 20:41:59 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/10 17:31:50 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 # define FRAG_HP 10
 # define FRAG_ATTACK 3
-# define FRAG_ENGY 0.6
-# define FRAG_REPAIR 0.5
+# define FRAG_ENGY 10
+# define FRAG_REPAIR 1
 	
 class FragTrap : public ClapTrap
 {

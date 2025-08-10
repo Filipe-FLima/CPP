@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:27 by flima             #+#    #+#             */
-/*   Updated: 2025/08/05 21:07:53 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/10 17:15:18 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include <iomanip>
 
 # define STATS 10
-# define ATK 0
-# define ENERGY 1
+# define ATK 1
+# define ENERGY 0.2
 # define REPAIR 0.1
 
 

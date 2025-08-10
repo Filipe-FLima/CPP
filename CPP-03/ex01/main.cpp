@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:31 by flima             #+#    #+#             */
-/*   Updated: 2025/08/07 20:39:18 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/10 17:27:00 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ int	main(void)
 	ScavTrap A("Clappy");
 	ScavTrap B("Minion");
 	ScavTrap C;
-
-	C = B;
+	ScavTrap D(A);
 	std::string	input;
 
+	C = B;
+	D.guardGate();
 	while ((A.is_alive() && B.is_alive()))
 	{
-		std::cout << "\nScavTraps stats\n\n" << std::setw(10) << std::left << "ScavTrap" << "|"
+		std::cout << "\nRobots stats\n\n" << std::setw(10) << std::left << "Robots" << "|"
 			<< std::setw(10) << std::left << "Hit Points" << "|" << std::setw(10)
 			<< std::left << "Damage" << "|" << std::setw(10) << std::left << "Energy" << std::endl
 			<< std::setw(10) << std::left << "A" << "|" << std::setw(10) << std::left 
@@ -66,7 +67,7 @@ int	main(void)
 			<< std::setw(10) << std::left << "B" << "|" << std::setw(10) << std::left 
 			<< B.getHitPoints() << "|" << std::setw(10) << std::left << B.getAttackDamage() << "|"
 			<< std::setw(10) << std::left << B.getEnergyPoints() << std::endl;
-		std::cout << "Pick up a robot (ScavTrap): A or B" << std::endl;
+		std::cout << "Pick up a robot Robots: A or B" << std::endl;
 		std::getline(std::cin, input);
 		if (input == "A")
 			handleScavA(A, B);
@@ -74,11 +75,11 @@ int	main(void)
 			handleScavB(A, B);
 	}
 	if (!A.is_alive() && !B.is_alive())
-		std::cout << "\nBoth have been destroyed in battle!\n" << std::endl;
+		std::cout << "\nBoth robots have been destroyed in battle!\n" << std::endl;
 	else if (!A.is_alive())
-		std::cout << "\nA has fallen. B is victorious!\n" << std::endl;
+		std::cout << "\nRobots A has fallen. B is victorious!\n" << std::endl;
 	else
-		std::cout << "\nB has fallen. A is victorious!\n" << std::endl;
+		std::cout << "\nRobots B has fallen. A is victorious!\n" << std::endl;
 	C.guardGate();
 	return 0;
 }
