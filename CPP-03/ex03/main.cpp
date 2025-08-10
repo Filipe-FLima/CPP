@@ -6,13 +6,13 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:29:31 by flima             #+#    #+#             */
-/*   Updated: 2025/08/10 14:50:44 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/10 15:27:47 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
-void	handleRobotsB(ScavTrap& A, FragTrap& B)
+void	handleRobotsB(DiamondTrap& A, FragTrap& B)
 {
 	std::string	command;
 	
@@ -21,7 +21,7 @@ void	handleRobotsB(ScavTrap& A, FragTrap& B)
 	std::getline(std::cin, command);
 	if (command == "ATTACK")
 	{
-		B.attack(A.getName());
+		B.attack(A.getDiamondName());
 		if (!B.checkEnergy())
 			A.takeDamage(B.getAttackDamage());
 	}
@@ -29,11 +29,11 @@ void	handleRobotsB(ScavTrap& A, FragTrap& B)
 		B.beRepaired(STATS * FRAG_REPAIR);
 }
 
-void	handleRobotsA(ScavTrap& A, FragTrap& B)
+void	handleRobotsA(DiamondTrap& A, FragTrap& B)
 {
 	std::string	command;
 	
-	std::cout << "Give one of the following commands to " << A.getName()
+	std::cout << "Give one of the following commands to " << A.getDiamondName()
 		 << ": ATTACK or REPAIR " << std::endl;
 	std::getline(std::cin, command);
 	if (command == "ATTACK")
@@ -48,16 +48,16 @@ void	handleRobotsA(ScavTrap& A, FragTrap& B)
 
 int	main(void)
 {
-	ScavTrap A("Clappy");
+	DiamondTrap A("Clappy");
 	FragTrap B("Minion");
-	FragTrap C;
+	// DiamondTrap C;
 
-	C = B;
+	// C = A;
 	std::string	input;
 
 	while ((A.is_alive() && B.is_alive()))
 	{
-		std::cout << "\nFragTraps stats\n\n" << std::setw(10) << std::left << "ScavTrap" << "|"
+		std::cout << "\nRobots stats\n\n" << std::setw(10) << std::left << "Robots" << "|"
 			<< std::setw(10) << std::left << "Hit Points" << "|" << std::setw(10)
 			<< std::left << "Damage" << "|" << std::setw(10) << std::left << "Energy" << std::endl
 			<< std::setw(10) << std::left << "A" << "|" << std::setw(10) << std::left 
@@ -66,7 +66,7 @@ int	main(void)
 			<< std::setw(10) << std::left << "B" << "|" << std::setw(10) << std::left 
 			<< B.getHitPoints() << "|" << std::setw(10) << std::left << B.getAttackDamage() << "|"
 			<< std::setw(10) << std::left << B.getEnergyPoints() << std::endl;
-		std::cout << "Pick up a robot (ScavTrap): A or B" << std::endl;
+		std::cout << "Pick up a robot: A or B" << std::endl;
 		std::getline(std::cin, input);
 		if (input == "A")
 			handleRobotsA(A, B);
@@ -79,6 +79,9 @@ int	main(void)
 		std::cout << "\nA has fallen. B is victorious!\n" << std::endl;
 	else
 		std::cout << "\nB has fallen. A is victorious!\n" << std::endl;
-	C.highFivesGuys();
+	// C.whoAmI();
+	// C.highFivesGuys();
+	// C.guardGate();
+	
 	return 0;
 }
