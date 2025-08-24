@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:08:36 by flima             #+#    #+#             */
-/*   Updated: 2025/08/18 14:12:16 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/24 12:44:24 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 Cure::Cure()
 {
 	type = "cure";
-	std::cout << "Default Cure constructor called." << std::endl;
+	// std::cout << "Default Cure constructor called." << std::endl;
 }
 
 Cure::Cure(const Cure &other) : AMateria(other)
 {
-	std::cout << "Cure copy constructor called." << std::endl;
+	// std::cout << "Cure copy constructor called." << std::endl;
 }
 
 Cure &Cure::operator=(const Cure &other)
@@ -28,14 +28,14 @@ Cure &Cure::operator=(const Cure &other)
 	if (this != &other)
 	{
 		AMateria::operator=(other);
-		std::cout << "Cure copy assingment constructor called." << std::endl;
+		// std::cout << "Cure copy assingment constructor called." << std::endl;
 	}
 	return *this;
 }
 
 Cure::~Cure()
 {
-	std::cout << "Cure destructor called." << std::endl;
+	// std::cout << "Cure destructor called." << std::endl;
 }
 
 AMateria *Cure::clone() const

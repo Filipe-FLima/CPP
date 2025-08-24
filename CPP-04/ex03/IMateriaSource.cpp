@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IMateriaSource.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:21 by flima             #+#    #+#             */
-/*   Updated: 2025/08/18 14:13:58 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/24 12:48:23 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 IMateriaSource::IMateriaSource()
 {
-	std::cout << "Default IMateriaSource constructor called." << std::endl;
+	// std::cout << "Default IMateriaSource constructor called." << std::endl;
 }
 
 IMateriaSource::IMateriaSource(const IMateriaSource &)
 {
-	std::cout << "IMateriaSource copy constructor called." << std::endl;
+	// std::cout << "IMateriaSource copy constructor called." << std::endl;
 }
 
-IMateriaSource &IMateriaSource::operator=(const IMateriaSource &)
+IMateriaSource &IMateriaSource::operator=(const IMateriaSource &other)
 {
-	std::cout << "IMateriaSource copy assingment constructor called." << std::endl;
+	if (this != &other)
+	{
+		// std::cout << "IMateriaSource copy assingment constructor called." << std::endl;	
+	}
 	return *this;
 }

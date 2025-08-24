@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flima <flima@student.42.fr>                +#+  +:+       +#+         #
+#    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 21:19:42 by flima             #+#    #+#              #
-#    Updated: 2025/08/18 14:06:47 by flima            ###   ########.fr        #
+#    Updated: 2025/08/24 12:49:24 by filipe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Zoo
+NAME = Materia
 
 RESET   = \033[0m
 GREEN   = \033[32m
