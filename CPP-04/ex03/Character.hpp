@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 20:40:08 by flima             #+#    #+#             */
-/*   Updated: 2025/08/17 20:27:58 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/30 11:55:52 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class	Character : public ICharacter
 		void equip(AMateria* m) override;
 		void unequip(int idx) override;
 		void use(int idx, ICharacter& target) override;
+		void cleanInventory();
 };
 
 #endif

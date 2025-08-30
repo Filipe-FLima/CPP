@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 20:40:11 by flima             #+#    #+#             */
-/*   Updated: 2025/08/18 14:11:00 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/30 12:02:37 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ Character &Character::operator=(const Character &other)
 {
 	if (this != &other)
 	{
+		cleanInventory();
 		name = other.name;
 		floor = other.floor;
 		for (int i = 0; i < slot; i++)
 		{
-			if (inventory[i])
-				delete inventory[i];
 			if (other.inventory[i])
 				inventory[i] = other.inventory[i]->clone();
 			else
@@ -59,11 +58,7 @@ Character &Character::operator=(const Character &other)
 
 Character::~Character()
 {
-	for (int i = 0; i < slot; i++)
-	{
-		if (inventory[i])
-			delete inventory[i];	
-	}
+	cleanInventory();
 }
 
 std::string const &Character::getName() const
@@ -100,4 +95,16 @@ void Character::use(int idx, ICharacter &target)
 		return;
 	if (inventory[idx])
 		inventory[idx]->use(target);
+}
+
+void Character::cleanInventory()
+{
+	for (int i = 0; i < slot; i++)
+	{
+		if (inventory[i])
+		{
+			delete inventory[i];	
+			inventory[i] = nullptr;
+		}
+	}
 }

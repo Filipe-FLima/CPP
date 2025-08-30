@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:39:20 by flima             #+#    #+#             */
-/*   Updated: 2025/08/15 11:02:20 by flima            ###   ########.fr       */
+/*   Updated: 2025/08/29 11:42:52 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ Cat &Cat::operator=(const Cat &other)
 	{
 		Animal::operator=(other);
 		type = "Cat";
+		delete catBrain;
 		catBrain = new Brain(*catBrain);
 		std::cout << "Cat copy assingment constructor called." << std::endl;
 	}

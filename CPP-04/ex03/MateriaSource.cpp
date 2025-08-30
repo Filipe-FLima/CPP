@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:17:49 by flima             #+#    #+#             */
-/*   Updated: 2025/08/24 12:31:47 by filipe           ###   ########.fr       */
+/*   Updated: 2025/08/27 11:38:23 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void MateriaSource::learnMateria(AMateria *m)
 			return;
 		}
 	}
+	delete m;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)

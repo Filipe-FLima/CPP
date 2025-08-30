@@ -57,7 +57,10 @@ Floor::~Floor()
 void Floor::dropOnFloor(AMateria *m)
 {
 	if (onFloor == FLOOR_LIM)
+	{
 		cleanFloor();
+		onFloor = 0;
+	}
 	for (int i = 0; i < FLOOR_LIM; i++)
 	{
 		if (!floor[i])

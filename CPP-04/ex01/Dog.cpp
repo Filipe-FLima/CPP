@@ -31,6 +31,7 @@ Dog &Dog::operator=(const Dog &other)
 	{
 		Animal::operator=(other);
 		type = "Dog";
+		delete dogBrain;
 		dogBrain = new Brain(*other.dogBrain);
 		std::cout << "Dog copy assingment constructor called." << std::endl;
 	}
