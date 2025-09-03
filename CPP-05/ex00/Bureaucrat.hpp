@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.h                                       :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:56 by flima             #+#    #+#             */
-/*   Updated: 2025/08/31 19:28:39 by flima            ###   ########.fr       */
+/*   Updated: 2025/09/03 20:19:14 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@
 class	Bureaucrat
 {
 	private:
-		std::string			name;
-		int					grade;
+		const std::string		name;
+		int						grade;
 		
 	public:
+		Bureaucrat();
 		Bureaucrat(const std::string& name, const int& grade);
 		Bureaucrat(const Bureaucrat& other);
 		Bureaucrat& operator=(const Bureaucrat& other);

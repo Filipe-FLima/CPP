@@ -6,7 +6,7 @@
 #    By: flima <flima@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 21:19:42 by flima             #+#    #+#              #
-#    Updated: 2025/09/03 20:18:43 by flima            ###   ########.fr        #
+#    Updated: 2025/09/03 20:20:10 by flima            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ CXXFLAGS = -Wall -Wextra -Werror -g
 CXXFLAGS += -std=c++11
 CXXFLAGS += -fsanitize=address
 
-HEADERS = Bureaucrat.hpp
-SRCS = main.cpp Bureaucrat.cpp
+HEADERS = Bureaucrat.hpp Form.hpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
 OBJS_DIR = objs/
 OBJS_O = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_O))
