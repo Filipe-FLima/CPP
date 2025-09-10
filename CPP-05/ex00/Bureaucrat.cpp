@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:59 by flima             #+#    #+#             */
-/*   Updated: 2025/09/03 20:19:01 by flima            ###   ########.fr       */
+/*   Updated: 2025/09/10 12:19:30 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : name(name)
 	if (grade < MAXGRADE)
 		throw GradeTooHighException();
 	else if (grade > MINGRADE)
-		GradeTooLowException();
+		throw GradeTooLowException();
 	this->grade = grade;
 }
 
@@ -77,6 +77,7 @@ const char *Bureaucrat::GradeTooLowException::what() const noexcept
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
 {
-	os << obj.getName() << ", bureaucrat garde " << obj.getGrade();
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return os;
 }
+

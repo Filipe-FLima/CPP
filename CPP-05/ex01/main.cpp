@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:59:02 by flima             #+#    #+#             */
-/*   Updated: 2025/09/03 20:20:18 by flima            ###   ########.fr       */
+/*   Updated: 2025/09/10 13:04:08 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,54 @@
 int	main()
 {
 	{
-		Bureaucrat teamLeader("John", 150);
-		
-		std::cout << teamLeader << std::endl;
 		try
 		{
-			teamLeader.gradeDown();
+			Bureaucrat teamLeader("John", 150);
 			std::cout << teamLeader << std::endl;
-			
+			Form F1("Tax Form", 150, 50);
+			std::cout << F1 << std::endl;
+			teamLeader.signForm(F1);
+			std::cout << F1 << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		
 	}
 	
 	{
 		try
 		{
-			Bureaucrat teamLeader("Thiago", 0);
+			Bureaucrat teamLeader("Thiago", 150);
 			std::cout << teamLeader << std::endl;
-			teamLeader.gradeDown();
-			std::cout << teamLeader << std::endl;
-			
+			Form F1("Tax Form", 50, 50);
+			std::cout << F1 << std::endl;
+			teamLeader.signForm(F1);
+			std::cout << F1 << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		
 	}
 
 	{
 		try
 		{
-			Bureaucrat teamLeader("Filipe", 50);
+			Bureaucrat teamLeader("Marcos", 150);
 			std::cout << teamLeader << std::endl;
-			teamLeader.gradeDown();
-			std::cout << teamLeader << std::endl;
-			
+			Form F1("Tax Form", 0, 50);
+			std::cout << F1 << std::endl;
+			teamLeader.signForm(F1);
+			std::cout << F1 << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		
 	}
 	
 }
