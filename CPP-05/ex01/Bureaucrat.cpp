@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:59 by flima             #+#    #+#             */
-/*   Updated: 2025/10/14 19:56:55 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/14 20:12:39 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : name(name)
 	if (grade < MAXGRADE)
 		throw GradeTooHighException();
 	else if (grade > MINGRADE)
-		GradeTooLowException();
+		throw GradeTooLowException();
 	this->grade = grade;
 }
 
@@ -80,12 +80,12 @@ void Bureaucrat::signForm(Form &form) const
 
 const char *Bureaucrat::GradeTooHighException::what() const noexcept
 {
-	return "Grade higher than MaxGrade.";
+	return "Grade is higher than MaxGrade.";
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const noexcept
 {
-	return "Grade lower than MinGrade.";
+	return "Grade is lower than MinGrade.";
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)

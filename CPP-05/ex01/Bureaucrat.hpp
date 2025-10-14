@@ -6,20 +6,23 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:56 by flima             #+#    #+#             */
-/*   Updated: 2025/10/14 19:51:50 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/14 20:12:49 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_H
 # define BUREAUCRAT_H
 
-#include <iostream>
+# include <iostream>
 # include <exception>
 # include <string>
+# include "Form.hpp"
 # include "Form.hpp"
 
 # define	MAXGRADE 1
 # define	MINGRADE 150
+
+class Form;
 
 class Form;
 
@@ -39,6 +42,7 @@ class	Bureaucrat
 		int					getGrade() const;
 		void				gradeUp();
 		void				gradeDown();
+		void				signForm(Form& form) const;
 		void				signForm(Form& form) const;
 	
 	
