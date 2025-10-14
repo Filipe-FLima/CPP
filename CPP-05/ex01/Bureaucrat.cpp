@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:59 by flima             #+#    #+#             */
-/*   Updated: 2025/09/03 20:38:23 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/14 19:56:55 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,19 @@ void Bureaucrat::gradeDown()
 		grade++;
 }
 
+void Bureaucrat::signForm(Form &form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name << " signed " << form.getName() << std::endl;
+	}
+	catch(Form::GradeTooLowException & e)
+	{
+		std::cout << name << " couldn`t sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
 const char *Bureaucrat::GradeTooHighException::what() const noexcept
 {
 	return "Grade higher than MaxGrade.";
@@ -77,6 +90,6 @@ const char *Bureaucrat::GradeTooLowException::what() const noexcept
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
 {
-	os << obj.getName() << ", bureaucrat garde " << obj.getGrade();
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return os;
 }

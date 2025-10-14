@@ -6,16 +6,16 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 20:20:50 by flima             #+#    #+#             */
-/*   Updated: 2025/09/03 20:32:28 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/14 19:46:13 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_H
 # define FORM_H
 
-#include <iostream>
-# include <exception>
-# include <string>
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class	Form
 {
@@ -26,7 +26,7 @@ class	Form
 		const int				gradeToExecute;
 		
 	public:
-		Form(const std::string& name, int& gradeToSign, int& gradeToExecute);
+		Form(const std::string& name, int gradeToSign, int gradeToExecute);
 		Form(const Form& other);
 		Form& operator=(const Form& other);
 		~Form();
@@ -35,6 +35,7 @@ class	Form
 		std::string			getFormStatus() const;
 		int					getGradeToSign() const;
 		int					getGradeToExecute() const;
+		void				beSigned(const Bureaucrat& b);
 
 	class GradeTooHighException: public std::exception
 	{

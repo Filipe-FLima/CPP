@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:59 by flima             #+#    #+#             */
-/*   Updated: 2025/09/03 20:19:01 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/14 19:07:13 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ const char *Bureaucrat::GradeTooLowException::what() const noexcept
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
 {
-	os << obj.getName() << ", bureaucrat garde " << obj.getGrade();
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return os;
 }
