@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:59 by flima             #+#    #+#             */
-/*   Updated: 2025/10/15 19:51:04 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/16 20:18:04 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ void Bureaucrat::executeForm(AForm &form) const
 	try
 	{
 		form.execute(*this);
-		std::cout << name << " executed " << form.getName();
+		std::cout << name << " executed " << form.getName() + " form." << std::endl;
 	}
 	catch(AForm::GradeTooLowException & e)
 	{
-		std::cout << name << " couldn`t execute " << form.getName() << 
-		" because " << e.what() << std::endl;
+		std::cout << name << " couldn`t execute " << form.getName() + 
+		" form because " << e.what() << std::endl;
 	}
 }
 

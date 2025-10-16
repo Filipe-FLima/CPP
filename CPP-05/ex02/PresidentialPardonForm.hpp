@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 20:26:57 by flima             #+#    #+#             */
-/*   Updated: 2025/10/15 19:33:00 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/16 20:08:36 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 #include "AForm.hpp"
 
-#define REQUIRETODSIGN 25
-#define REQUIREDTOEXEC 5
+#define PP_REQUIRETODSIGN 25
+#define PP_REQUIREDTOEXEC 5
 
 class PresidentialPardonForm : public AForm
 {
 	private:
-		std::string	target;
+		const std::string	target;
 	
 	public:
 		PresidentialPardonForm(const std::string& _target);
@@ -29,6 +29,7 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 		~PresidentialPardonForm();
 
+		std::string	getTarget() const;
 		void	action() const override;
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 20:27:02 by flima             #+#    #+#             */
-/*   Updated: 2025/10/15 19:38:41 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/16 20:08:48 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #include "AForm.hpp"
 
-#define REQUIRETODSIGN 72
-#define REQUIREDTOEXEC 45
+#define RR_REQUIRETODSIGN 72
+#define RR_REQUIREDTOEXEC 45
 
 class RobotomyRequestForm : public AForm
 {
@@ -29,6 +29,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		~RobotomyRequestForm();
 
+		std::string	getTarget() const;
 		void	action() const override;
 };
 

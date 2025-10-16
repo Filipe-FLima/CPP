@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flima <flima@student.42.fr>                +#+  +:+       +#+         #
+#    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 21:19:42 by flima             #+#    #+#              #
-#    Updated: 2025/10/15 18:48:54 by flima            ###   ########.fr        #
+#    Updated: 2025/10/16 20:10:06 by filipe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CXXFLAGS += -fsanitize=address
 
 HEADERS = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp \
 	PresidentialPardonForm.hpp RobotomyRequestForm.hpp
-SRCS = main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp \
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp \
 	RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJS_DIR = objs/
 OBJS_O = $(SRCS:.cpp=.o)

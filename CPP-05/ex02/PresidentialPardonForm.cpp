@@ -14,7 +14,7 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &_target) :
-	AForm("PresidentialPardon", REQUIRETODSIGN, REQUIREDTOEXEC), 
+	AForm("PresidentialPardon", PP_REQUIRETODSIGN, PP_REQUIREDTOEXEC), 
 	target(_target)
 {
 }
@@ -30,7 +30,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 	if (this != &other)
 	{
 		AForm::operator=(other);
-		target = other.target; // Does it make sense??
 	}
 	return *this;
 }
@@ -39,7 +38,12 @@ PresidentialPardonForm::~PresidentialPardonForm()
 {
 }
 
+std::string PresidentialPardonForm::getTarget() const
+{
+	return target;
+}
+
 void PresidentialPardonForm::action() const
 {
-	std::cout << target << " has been pardoned by Zaphod Beeblebrox.";
+	std::cout << target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

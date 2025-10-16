@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 20:27:07 by flima             #+#    #+#             */
-/*   Updated: 2025/10/15 19:44:04 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/16 20:08:59 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define SHRUBBERYCREATIONFORM_H
 
 #include "AForm.hpp"
+#include <fstream>
 
-#define REQUIRETODSIGN 145
-#define REQUIREDTOEXEC 137
+#define SC_REQUIRETODSIGN 145
+#define SC_REQUIREDTOEXEC 137
 
 class ShrubberyCreationForm : public AForm
 {
@@ -29,6 +30,7 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
 		~ShrubberyCreationForm();
 
+		std::string	getTarget() const;
 		void	action() const override;
 };
 

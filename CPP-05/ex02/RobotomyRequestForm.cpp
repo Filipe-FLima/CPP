@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 20:27:00 by flima             #+#    #+#             */
-/*   Updated: 2025/10/15 19:40:25 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/16 20:09:23 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &_target) :
-	AForm("RobotomyRequest", REQUIRETODSIGN, REQUIREDTOEXEC), 
+	AForm("RobotomyRequest", RR_REQUIRETODSIGN, RR_REQUIREDTOEXEC), 
 	target(_target)
 {
 }
@@ -29,9 +29,13 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	if (this != &other)
 	{
 		AForm::operator=(other);
-		target = other.target; // Does it make sense??
 	}
 	return *this;
+}
+
+std::string RobotomyRequestForm::getTarget() const
+{
+	return target;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -40,6 +44,11 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::action() const
 {
-	//TODO: Makes some drilling noises, then informs that <target> has been robotomized
-	// successfully 50% of the time. Otherwise, it informs that the robotomy failed
+	std::cout << " BZZZZZ.... *drilling noises* " << std::endl;
+	
+	std::srand(time(NULL));
+	if (std::rand() % 2)
+		std::cout << getTarget() + " has been robotomized successfully." << std::endl;
+	else
+		std::cout << "The robotomy on " << getTarget() + " has failed." << std::endl;
 }
