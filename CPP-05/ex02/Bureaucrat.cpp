@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:59 by flima             #+#    #+#             */
-/*   Updated: 2025/10/16 20:18:04 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/17 19:14:36 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ void Bureaucrat::executeForm(AForm &form) const
 	try
 	{
 		form.execute(*this);
-		std::cout << name << " executed " << form.getName() + " form." << std::endl;
+		std::cout << getName() << " executed " << form.getName() + " form." << std::endl;
 	}
 	catch(AForm::GradeTooLowException & e)
 	{
-		std::cout << name << " couldn`t execute " << form.getName() + 
+		std::cout << getName() << " couldn`t execute " << form.getName() + 
 		" form because " << e.what() << std::endl;
 	}
 }

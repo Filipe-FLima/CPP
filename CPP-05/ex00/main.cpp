@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:59:02 by flima             #+#    #+#             */
-/*   Updated: 2025/09/10 11:16:14 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/17 18:47:13 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 int	main()
 {
 	{
-		Bureaucrat teamLeader("John", 100);
-		
-		std::cout << teamLeader << std::endl;
 		try
 		{
+			Bureaucrat teamLeader("John", 100);
+			std::cout << teamLeader << std::endl;
 			teamLeader.gradeDown();
 			std::cout << teamLeader << std::endl;
 			

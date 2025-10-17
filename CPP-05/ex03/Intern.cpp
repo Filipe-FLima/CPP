@@ -55,10 +55,13 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target) 
 	switch (caseIndex)
 	{
 		case 0:
+			std::cout << "Intern creates " << formName << std::endl;
 			return new PresidentialPardonForm(target);
 		case 1:
+			std::cout << "Intern creates " << formName << std::endl;
 			return new RobotomyRequestForm(target);
 		case 2:
+			std::cout << "Intern creates " << formName << std::endl;
 			return new ShrubberyCreationForm(target);
 		case -1:
 			break;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:59:02 by flima             #+#    #+#             */
-/*   Updated: 2025/10/14 20:14:58 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/17 19:02:23 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		
-		
 	}
 
 	std::cout << std::endl;
@@ -48,7 +46,6 @@ int	main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		
 	}
 
 	std::cout << std::endl;
@@ -67,8 +64,6 @@ int	main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		
-		
 	}
 	
 	std::cout << std::endl;
@@ -87,7 +82,5 @@ int	main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		
-		
 	}
 }

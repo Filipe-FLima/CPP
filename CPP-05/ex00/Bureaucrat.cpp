@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:58:59 by flima             #+#    #+#             */
-/*   Updated: 2025/10/14 20:12:33 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/17 18:45:18 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ const char *Bureaucrat::GradeTooLowException::what() const noexcept
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
 {
-	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
-	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
+	os << obj.getName() + ", bureaucrat grade " << obj.getGrade();
 	return os;
 }
 
