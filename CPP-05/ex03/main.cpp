@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:59:02 by flima             #+#    #+#             */
-/*   Updated: 2025/10/16 21:38:50 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/17 18:07:59 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,61 +18,97 @@
 
 int	main()
 {
+	std::cout << std::endl;
 	{
+		Bureaucrat teamLeader("Filipe", 1);
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("shrubbery creation", "home");
 		try
 		{
-			Bureaucrat teamLeader("Filipe", 150);
-			Intern someRandomIntern;
-			AForm* rrf;
-			rrf = someRandomIntern.makeForm("shrubbery creation", "home");
+			if (!rrf)
+				throw Intern::FormNotFoundException();
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
-			delete rrf;
+			std::cout << teamLeader.getName() << " signed and executed " <<
+			 rrf->getName() << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		delete rrf;
+	}
+
+	std::cout << std::endl;
+	
+	{
+		Bureaucrat teamLeader("Thiago", 1);
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("presidential pardon", "Arthur");
+		try
+		{
+			if (!rrf)
+				throw Intern::FormNotFoundException();
+			rrf->beSigned(teamLeader);
+			rrf->execute(teamLeader);
+			std::cout << teamLeader.getName() << " signed and executed " <<
+			 rrf->getName() << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		delete rrf;
 		
 	}
 
-	// std::cout << std::endl;
+	std::cout << std::endl;
 	
-	// {
-	// 	try
-	// 	{
-	// 		Bureaucrat teamLeader("Thiago", 1);
-	// 		Intern someRandomIntern;
-	// 		AForm* rrf;
-	// 		rrf = someRandomIntern.makeForm("presidential pardon", "Arthur");
-	// 		rrf->beSigned(teamLeader);
-	// 		rrf->execute(teamLeader);
-	// 		delete rrf;
-	// 	}
-	// 	catch(const std::exception& e)
-	// 	{
-	// 		std::cerr << e.what() << '\n';
-	// 	}
-		
-	// }
+	{
+		Bureaucrat teamLeader("Marcos", 1);
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		try
+		{
+			if (!rrf)
+				throw Intern::FormNotFoundException();
+			rrf->beSigned(teamLeader);
+			rrf->execute(teamLeader);
+			std::cout << teamLeader.getName() << " signed and executed " <<
+			 rrf->getName() << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		delete rrf;
+	}
 
-	// std::cout << std::endl;
+	std::cout << std::endl;
 	
-	// {
-	// 	try
-	// 	{
-	// 		Bureaucrat teamLeader("Marcos", 1);
-	// 		Intern someRandomIntern;
-	// 		AForm* rrf;
-	// 		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-	// 		rrf->beSigned(teamLeader);
-	// 		rrf->execute(teamLeader);
-	// 		delete rrf;
-	// 	}
-	// 	catch(const std::exception& e)
-	// 	{
-	// 		std::cerr << e.what() << '\n';
-	// 	}
-	// }
-
+	{
+		Bureaucrat teamLeader("Marcos", 1);
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("randomName", "Bender");
+		try
+		{
+			if (!rrf)
+				throw Intern::FormNotFoundException();
+			rrf->beSigned(teamLeader);
+			rrf->execute(teamLeader);
+			std::cout << teamLeader.getName() << " signed and executed " <<
+			 rrf->getName() << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		delete rrf;
+	}
+	std::cout << std::endl;
+	return 0;
 }

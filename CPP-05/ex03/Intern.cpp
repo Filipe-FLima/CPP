@@ -63,6 +63,10 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target) 
 		case -1:
 			break;
 	}
-	std::cout << "Intern could not find the form: " << formName << std::endl;
 	return nullptr;
+}
+
+const char *Intern::FormNotFoundException::what() const noexcept
+{
+	return "Intern could not find the requested form.";
 }

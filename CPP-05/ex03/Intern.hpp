@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 20:33:18 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/16 20:53:52 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/17 18:01:50 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ class Intern
 		~Intern();
 
 		AForm *makeForm(const std::string &formName, const std::string &target) const;
+		
+		class FormNotFoundException : public std::exception
+		{
+			public:
+				const char* what() const noexcept override;
+		};
 };
 
 #endif
