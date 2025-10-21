@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 17:06:48 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/21 11:42:02 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/21 12:41:00 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,8 @@ int main(int argc, char** argv)
 	}
 	
 	std::string input = argv[1];
-	// std::string literal = trimSpaces(input);
-	int test = 45;
-	char c = static_cast<char>(test);
-	std::cout << c << std::endl;
-	// ScalarConverter::convert(literal);
+	std::string literal = trimSpaces(input);
+	ScalarConverter::convert(literal);
 	
 	return 0;
 }
-
-//TODO: char "*" for all numbers?

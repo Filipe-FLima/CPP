@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ConvertType.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:42:20 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/19 21:02:11 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/21 12:40:13 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void convertFromInt(const std::string &literal, std::ostringstream &output)
 	if (!isprint(value))
 		output << "Char: Non displayable\n";
 	else
-		output << "Char: '*'" << "\n";
+		output << "Char: '" << char(value) << "'\n";
 	output << "Int: " << value << "\n";
 	output << std::fixed << std::setprecision(1);
 	output << "Float: " << static_cast<float>(value) << "f\n";
@@ -71,7 +71,7 @@ void	convertFromFloat(const std::string &literal, std::ostringstream &output)
 	if (!isprint(value))
 		output << "Char: Non displayable\n";
 	else
-		output << "Char: '*'" << "\n";
+		output << "Char: '" << char(static_cast<int>(value)) << "'\n";
 	output << "Int: " << static_cast<int>(value) << "\n";
 	output << std::fixed << std::setprecision(1);;
 	output << "Float: " << value << "f\n";
@@ -105,7 +105,7 @@ void	convertFromDouble(const std::string &literal, std::ostringstream &output)
 	if (!isprint(value))
 		output << "Char: Non displayable\n";
 	else
-		output << "Char: '*'" << "\n";
+		output << "Char: '" << char(static_cast<int>(value)) << "'\n";
 	output << "Int: " << static_cast<int>(value) << "\n";
 	output << std::fixed << std::setprecision(1);
 	output << "Float: " << static_cast<float>(value) << "f\n";
