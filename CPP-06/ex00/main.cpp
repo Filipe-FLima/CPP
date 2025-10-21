@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 17:06:48 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/19 20:59:44 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/21 11:42:02 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.h"
+
+
+std::string trimSpaces(std::string toTrim)
+{
+	size_t start = toTrim.find_first_not_of(" ");
+	if (start == std::string::npos)
+		return "";
+	size_t end = toTrim.find_last_not_of(" ");
+	return toTrim.substr(start, end - start + 1);
+}
 
 int main(int argc, char** argv)
 {
@@ -20,10 +30,14 @@ int main(int argc, char** argv)
 		return 1;
 	}
 	
-	std::string literal = argv[1];
-	ScalarConverter::convert(literal);
+	std::string input = argv[1];
+	// std::string literal = trimSpaces(input);
+	int test = 45;
+	char c = static_cast<char>(test);
+	std::cout << c << std::endl;
+	// ScalarConverter::convert(literal);
 	
 	return 0;
 }
 
-//TODO: remove empty spaces from output
+//TODO: char "*" for all numbers?

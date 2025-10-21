@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:59:02 by flima             #+#    #+#             */
-/*   Updated: 2025/10/17 19:33:26 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/21 12:27:59 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main()
 		{
 			if (!rrf)
 				throw Intern::FormNotFoundException();
+			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
 			std::cout << teamLeader.getName() << " signed and executed " <<
@@ -51,6 +52,7 @@ int	main()
 		{
 			if (!rrf)
 				throw Intern::FormNotFoundException();
+			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
 			std::cout << teamLeader.getName() << " signed and executed " <<
@@ -75,6 +77,7 @@ int	main()
 		{
 			if (!rrf)
 				throw Intern::FormNotFoundException();
+			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
 			std::cout << teamLeader.getName() << " signed and executed " <<
@@ -98,6 +101,7 @@ int	main()
 		{
 			if (!rrf)
 				throw Intern::FormNotFoundException();
+			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
 			std::cout << teamLeader.getName() << " signed and executed " <<
