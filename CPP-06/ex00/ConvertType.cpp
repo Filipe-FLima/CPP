@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ConvertType.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:42:20 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/21 12:40:13 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/22 11:40:20 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,21 @@ void convertFromPseudo(const std::string &literal, std::ostringstream &output)
 void	convertFromChar(const std::string &literal, std::ostringstream &output)
 {
 	if (!isprint(literal[0]))
+	{
 		output << "Char: Non displayable\n";
+		output << "Int: impossible\n";
+		output << "Float: impossible\n";
+		output << "Double: impossible\n";	
+	}
 	else
+	{
 		output << "Char: '" << literal[0] << "'\n";
-	output << "Int: impossible\n";
-	output << "Float: impossible\n";
-	output << "Double: impossible\n";
+		output << "Int: " << static_cast<int>(literal[0]) << "\n";
+		output << std::fixed << std::setprecision(1);
+		output << "Float: " << static_cast<float>(literal[0]) << "f\n";
+		output << "Double: " << static_cast<double>(literal[0]) << "\n";
+	}
+	
 	std::cout << output.str();
 	return ;
 
