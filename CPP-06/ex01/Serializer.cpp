@@ -6,29 +6,18 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:33:55 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/25 15:14:04 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/26 17:43:52 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "Serializer.h"
-#include <iostream>
-#include <cstdint>  
+#include "Serializer.h"
 
-struct Data {
-    int value;
-};
-
-int main(void) 
+uintptr_t Serializer::serialize(Data *ptr)
 {
-    Data data = {42};
-    Data* ptr = &data;
+	return reinterpret_cast<uintptr_t>(ptr);
+}
 
-    // Serializa (ponteiro → inteiro)
-    uintptr_t raw = reinterpret_cast<uintptr_t>(ptr);
-    std::cout << "Ponteiro como inteiro: " << raw << std::endl;
-
-    // Desserializa (inteiro → ponteiro)
-    Data* restored = reinterpret_cast<Data*>(raw);
-    std::cout << "Valor restaurado: " << restored->value << std::endl;
-	return 0;
+Data *Serializer::deserialize(uintptr_t raw)
+{
+	return reinterpret_cast<Data*>(raw);
 }

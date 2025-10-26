@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.h                                       :+:      :+:    :+:   */
+/*   Data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 14:33:58 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/26 17:42:22 by filipe           ###   ########.fr       */
+/*   Created: 2025/10/26 17:38:01 by filipe            #+#    #+#             */
+/*   Updated: 2025/10/26 17:39:25 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_H
-#define SERIALIZER_H
+
+#ifndef DATA_H
+#define DATA_H
 
 #include <iostream>
-#include <cstdint> 
-#include "Data.h"
+#include <string>
 
-
-class Serializer
-{
- public:
-	Serializer() = delete;
-	Serializer(const Serializer& other) = delete;
-	Serializer& operator=(const Serializer& other) = delete;
-	~Serializer() = delete;
-
-	static uintptr_t serialize(Data * ptr);
-	static Data* deserialize(uintptr_t raw);
-	
+struct Data {
+	std::string name;
+	int age;
 };
-
 
 #endif

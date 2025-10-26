@@ -6,28 +6,40 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:33:49 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/25 15:17:59 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/26 19:57:58 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstdint>  
-
-struct Data {
-    int value;
-};
+#include "Serializer.h"
 
 int main(void) 
 {
-    int data = 42;
-    int* ptr = &data;
-
-    // Serializa (ponteiro → inteiro)
-    uintptr_t raw = reinterpret_cast<uintptr_t>(ptr);
-    std::cout << "Ponteiro como inteiro: " << raw << std::endl;
-
-    // Desserializa (inteiro → ponteiro)
-    int* restored = reinterpret_cast<int*>(raw);
-    std::cout << "Valor restaurado: " << *restored << std::endl;
-	return 0;
+    {
+        Data person = {"Filipe", 25};
+        std::cout << "Name: " << person.name << std::endl << "Age: " << person.age << std::endl;
+        uintptr_t raw = Serializer::serialize(&person);
+        std::cout << "Serialized data (" << &person << "): " << raw << std::endl;
+        std::cout << "------------------------" << std::endl;
+        std::cout << "Deserializing..." << std::endl;
+        Data* deserializedPerson = Serializer::deserialize(raw);
+        std::cout << "Name: " << deserializedPerson->name << std::endl << "Age: " << deserializedPerson->age << std::endl;
+    }
+    std::cout << "========================" << std::endl;
+    {
+        Data* person = new Data();
+        person->name = "Mateus";
+        person->age = 45;
+        std::cout << "Name: " << person->name << std::endl << "Age: " << person->age << std::endl;
+        uintptr_t raw = Serializer::serialize(person);
+        std::cout << "Serialized data (" << &person << "): " << raw << std::endl;
+        std::cout << "------------------------" << std::endl;
+        std::cout << "Deserializing..." << std::endl;
+        Data* deserializedPerson = Serializer::deserialize(raw);
+        deserializedPerson->name = "Carlos";
+        deserializedPerson->age = 30;
+        std::cout << "Name: " << person->name << std::endl << "Age: " << person->age << std::endl;
+        delete person;
+    }
+    
+    return 0;
 }

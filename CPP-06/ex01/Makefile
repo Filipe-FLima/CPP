@@ -6,11 +6,11 @@
 #    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/19 15:54:11 by filipe            #+#    #+#              #
-#    Updated: 2025/10/19 20:15:21 by filipe           ###   ########.fr        #
+#    Updated: 2025/10/26 17:53:21 by filipe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME = serializer
 
 RESET   = \033[0m
 GREEN   = \033[32m
@@ -21,8 +21,8 @@ CXXFLAGS = -Wall -Wextra -Werror -g
 CXXFLAGS += -std=c++11
 CXXFLAGS += -fsanitize=address
 
-HEADERS = ScalarConverter.h
-SRCS = main.cpp ScalarConverter.cpp ConvertType.cpp
+HEADERS = Serializer.h Data.h
+SRCS = main.cpp Serializer.cpp
 OBJS_DIR = objs/
 OBJS_O = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_O))
