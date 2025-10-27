@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 17:59:02 by flima             #+#    #+#             */
-/*   Updated: 2025/10/21 12:27:59 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/27 14:30:20 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ int	main()
 	{
 		Bureaucrat teamLeader("Filipe", 1);
 		Intern someRandomIntern;
-		AForm* rrf;
-		rrf = someRandomIntern.makeForm("shrubbery creation", "home");
+		AForm* rrf = nullptr;
 		try
 		{
-			if (!rrf)
-				throw Intern::FormNotFoundException();
+			rrf = someRandomIntern.makeForm("shrubbery creation", "home");
 			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
@@ -46,12 +44,10 @@ int	main()
 	{
 		Bureaucrat teamLeader("Thiago", 1);
 		Intern someRandomIntern;
-		AForm* rrf;
-		rrf = someRandomIntern.makeForm("presidential pardon", "Arthur");
+		AForm* rrf = nullptr;
 		try
 		{
-			if (!rrf)
-				throw Intern::FormNotFoundException();
+			rrf = someRandomIntern.makeForm("shrubbery creation", "home");
 			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
@@ -71,12 +67,10 @@ int	main()
 	{
 		Bureaucrat teamLeader("Marcos", 1);
 		Intern someRandomIntern;
-		AForm* rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		AForm* rrf = nullptr;
 		try
 		{
-			if (!rrf)
-				throw Intern::FormNotFoundException();
+			rrf = someRandomIntern.makeForm("shrubbery creation", "home");
 			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);
@@ -95,12 +89,10 @@ int	main()
 	{
 		Bureaucrat teamLeader("Marcos", 1);
 		Intern someRandomIntern;
-		AForm* rrf;
-		rrf = someRandomIntern.makeForm("randomName", "Bender");
+		AForm* rrf = nullptr;
 		try
 		{
-			if (!rrf)
-				throw Intern::FormNotFoundException();
+			rrf = someRandomIntern.makeForm("random", "home");
 			std::cout << *rrf << std::endl;
 			rrf->beSigned(teamLeader);
 			rrf->execute(teamLeader);

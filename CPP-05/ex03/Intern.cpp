@@ -64,7 +64,7 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target) 
 			std::cout << "Intern creates " << formName << std::endl;
 			return new ShrubberyCreationForm(target);
 		case -1:
-			break;
+			throw FormNotFoundException();
 	}
 	return nullptr;
 }

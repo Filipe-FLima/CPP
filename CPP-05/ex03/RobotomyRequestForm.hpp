@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 20:27:02 by flima             #+#    #+#             */
-/*   Updated: 2025/10/16 20:08:48 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/27 14:29:51 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string	target;
-	
+		
+	protected:
+		void	action() const override;
 	public:
 		RobotomyRequestForm(const std::string& _target);
 		RobotomyRequestForm(const RobotomyRequestForm& other);
@@ -30,7 +32,6 @@ class RobotomyRequestForm : public AForm
 		~RobotomyRequestForm();
 
 		std::string	getTarget() const;
-		void	action() const override;
 };
 
 #endif

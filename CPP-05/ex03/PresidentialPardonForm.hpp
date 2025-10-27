@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 20:26:57 by flima             #+#    #+#             */
-/*   Updated: 2025/10/16 20:08:36 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/27 14:25:57 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ class PresidentialPardonForm : public AForm
 	private:
 		const std::string	target;
 	
+	protected:
+		void	action() const override;
+		
 	public:
 		PresidentialPardonForm(const std::string& _target);
 		PresidentialPardonForm(const PresidentialPardonForm& other);
@@ -30,7 +33,6 @@ class PresidentialPardonForm : public AForm
 		~PresidentialPardonForm();
 
 		std::string	getTarget() const;
-		void	action() const override;
 };
 
 #endif
