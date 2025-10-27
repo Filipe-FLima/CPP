@@ -3,16 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ConvertType.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:42:20 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/22 11:40:20 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/27 13:01:41 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.h"
 
-// Convert from int literal
+
+static void convertChar(std::ostringstream& output, int value)
+{
+
+	if (!(value >= 32 && value <= 126))
+		output << "Char: Non displayable\n";
+	else
+		output << "Char: '" << value << "'\n";
+	
+}
+
+static void convertInt(std::ostringstream& output, float value)
+{
+	if (value < INT_MIN || value > INT_MAX)
+		output << "Int: impossible\n";
+	else
+		output << "Int: " << static_cast<int>(value) << "\n";
+}
+
+static void convertInt(std::ostringstream& output, double value)
+{
+	if (value < INT_MIN || value > INT_MAX)
+		output << "Int: impossible\n";
+	else
+		output << "Int: " << static_cast<int>(value) << "\n";
+}
+
 void convertFromInt(const std::string &literal, std::ostringstream &output)
 {
 	int value;
@@ -34,10 +60,7 @@ void convertFromInt(const std::string &literal, std::ostringstream &output)
 		std::cout << output.str();
 		return ;
 	}
-	if (!isprint(value))
-		output << "Char: Non displayable\n";
-	else
-		output << "Char: '" << char(value) << "'\n";
+	convertChar(output, value);
 	output << "Int: " << value << "\n";
 	output << std::fixed << std::setprecision(1);
 	output << "Float: " << static_cast<float>(value) << "f\n";
@@ -46,7 +69,7 @@ void convertFromInt(const std::string &literal, std::ostringstream &output)
 	return ;
 }
 
-// Convert from float literal
+
 void	convertFromFloat(const std::string &literal, std::ostringstream &output)
 {
 	float value;
@@ -68,19 +91,16 @@ void	convertFromFloat(const std::string &literal, std::ostringstream &output)
 		std::cout << output.str();
 		return ;
 	}
-	if (!isprint(value))
-		output << "Char: Non displayable\n";
-	else
-		output << "Char: '" << char(static_cast<int>(value)) << "'\n";
-	output << "Int: " << static_cast<int>(value) << "\n";
-	output << std::fixed << std::setprecision(1);;
+	convertChar(output, static_cast<int>(value));
+	convertInt(output, static_cast<float>(value));
+	output << std::fixed << std::setprecision(1);
 	output << "Float: " << value << "f\n";
 	output << "Double: " << static_cast<double>(value) << "\n";
 	std::cout << output.str();
 	return ;
 }
 
-// Convert from double literal
+
 void	convertFromDouble(const std::string &literal, std::ostringstream &output)
 {
 	double value;
@@ -102,11 +122,8 @@ void	convertFromDouble(const std::string &literal, std::ostringstream &output)
 		std::cout << output.str();
 		return ;
 	}
-	if (!isprint(value))
-		output << "Char: Non displayable\n";
-	else
-		output << "Char: '" << char(static_cast<int>(value)) << "'\n";
-	output << "Int: " << static_cast<int>(value) << "\n";
+	convertChar(output, static_cast<int>(value));
+	convertInt(output, value);
 	output << std::fixed << std::setprecision(1);
 	output << "Float: " << static_cast<float>(value) << "f\n";
 	output << "Double: " << value << "\n";
@@ -114,7 +131,7 @@ void	convertFromDouble(const std::string &literal, std::ostringstream &output)
 	return ;
 }
 
-// Convert from pseudo-literal
+
 void convertFromPseudo(const std::string &literal, std::ostringstream &output)
 {
 	output << "Char: impossible\n";
@@ -138,7 +155,7 @@ void convertFromPseudo(const std::string &literal, std::ostringstream &output)
 	return ;
 }
 
-// Convert from char literal
+
 void	convertFromChar(const std::string &literal, std::ostringstream &output)
 {
 	if (!isprint(literal[0]))

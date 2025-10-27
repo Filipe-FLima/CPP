@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 17:06:48 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/21 12:41:00 by flima            ###   ########.fr       */
+/*   Updated: 2025/10/27 13:11:58 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 std::string trimSpaces(std::string toTrim)
 {
+	if (toTrim.length() == 1 && toTrim[0] == ' ')
+		return toTrim;
 	size_t start = toTrim.find_first_not_of(" ");
 	if (start == std::string::npos)
 		return "";

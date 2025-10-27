@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 17:03:12 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/19 20:47:45 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/27 13:02:44 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.h"
 
 
-// Helper function to check if the literal is a pseudo-literal
-bool	isPseudoLiteral(const std::string &literal)
+
+static bool	isPseudoLiteral(const std::string &literal)
 {
 	return (literal == "nan" || literal == "+inf" || literal == "-inf" ||
 			literal == "nanf" || literal == "+inff" || literal == "-inff");
 }
 
-// Helper function to check if the literal is a float literal
-bool	isFloatnDoubleLiteral(const std::string &literal, int type) 
+static bool	isFloatnDoubleLiteral(const std::string &literal, int type) 
 {
 	size_t	len = literal.length();
 	size_t	i = 0;
@@ -52,8 +51,8 @@ bool	isFloatnDoubleLiteral(const std::string &literal, int type)
 	return true;
 }
 
-// Helper function to determine the type of the literal
-int	getType(const std::string &literal)
+
+static int	getType(const std::string &literal)
 {
 	if (isPseudoLiteral(literal))
 		return PSEUDO;
@@ -69,7 +68,7 @@ int	getType(const std::string &literal)
 	return NONE;
 }
 
-// Main conversion function
+
 void ScalarConverter::convert(const std::string &literal)
 {
 	int type = getType(literal);

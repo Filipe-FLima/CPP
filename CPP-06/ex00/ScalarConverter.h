@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 15:57:44 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/19 20:41:40 by filipe           ###   ########.fr       */
+/*   Updated: 2025/10/27 12:42:49 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+
+#define INT_MIN -2147483648
+#define INT_MAX 2147483647
 
 enum Type
 {
