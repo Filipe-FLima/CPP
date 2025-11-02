@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:59:54 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/30 18:56:55 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/02 20:03:25 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int main( void )
 		std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
 		std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
 	}
-	
 	
 	return 0;
 }

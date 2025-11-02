@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 18:57:50 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/30 20:01:00 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/02 20:18:27 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,6 @@ void    iter(T* array, const size_t len, Func func)
         func(array[i]);
     }
 }
+
+
 #endif

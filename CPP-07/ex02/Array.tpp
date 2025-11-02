@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 15:43:57 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/02 18:55:11 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/02 19:23:30 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,15 @@ template <typename T>
 T &Array<T>::operator[](unsigned int i)
 {
     if (i >= size)
-        throw OutOfRange();
+        throw std::exception();
     return array[i];
 }
 
 template <typename T>
-const char *Array<T>::OutOfRange::what() const noexcept
-{
-    return "Accessing an element out of bounds.";
+const T &Array<T>::operator[](unsigned int i) const
+{  
+    if (i >= size)
+        throw std::exception();
+    return array[i];
+    
 }

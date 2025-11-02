@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:15:49 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/30 20:06:51 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/02 20:18:18 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ int main()
         iter(array, sizeof(array) / sizeof(array[0]), printContent<std::string>);
         std::cout << std::endl << std::endl ;
     }
-    
+
     return 0;
 }

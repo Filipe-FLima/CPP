@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 15:44:15 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/02 18:54:47 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/02 19:33:46 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,23 @@ int main()
         }
         catch (const std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "Accessing element out of bounds" << std::endl;
         }
     
     }
     std::cout << std::endl;
         {
-        Array<int> a(2);
+        Array<int> const a(2);
         try 
         {
+            // a[0] = 42;
             std::cout << a[0] << std::endl;
             std::cout << a[1] << std::endl;
             std::cout << "Array size: " << a.getSize() << std::endl;
         }
         catch (const std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "Accessing element out of bounds" << std::endl;
         }
     
     }
@@ -60,7 +61,7 @@ int main()
         }
         catch (const std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "Accessing element out of bounds" << std::endl;
         }
     
     }
@@ -78,7 +79,7 @@ int main()
         }
         catch (const std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "Accessing element out of bounds" << std::endl;
         }
     
     }
@@ -94,7 +95,7 @@ int main()
             std::cout << "b[0]: " << b[0] << std::endl;
             a[0] = "42";
             b[0] = "World";
-            std::cout << "a[0]: " << a[0] << std::endl;
+            std::cout << "a[0]: " << a[0][0] << a[0][1]<< std::endl;
             std::cout << "b[0]: " << b[0] << std::endl;
             std::cout << "Array a size: " << a.getSize() << std::endl;
             std::cout << "Array b size: " << b.getSize() << std::endl;
@@ -102,7 +103,7 @@ int main()
         }
         catch (const std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "Accessing element out of bounds" << std::endl;
         }
     
     }
@@ -128,7 +129,7 @@ int main()
         }
         catch (const std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "Accessing element out of bounds" << std::endl;
         }
     
     }

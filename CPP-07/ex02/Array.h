@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 15:31:31 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/02 18:48:19 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/02 19:50:28 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,8 @@ class   Array
 
         const unsigned int & getSize() const;
         T& operator[](unsigned int i);
-
-    class OutOfRange: public std::exception
-    {
-        const char* what() const noexcept override;
-    };
-        
+        const T& operator[](unsigned int i) const;
+    
 };
 
 #include "Array.tpp"
