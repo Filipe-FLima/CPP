@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
+#    By: flima <flima@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/19 15:54:11 by filipe            #+#    #+#              #
-#    Updated: 2025/11/06 14:31:39 by filipe           ###   ########.fr        #
+#    Updated: 2025/11/07 14:49:25 by flima            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Span
+NAME = span
 
 RESET   = \033[0m
 GREEN   = \033[32m
@@ -21,7 +21,7 @@ CXXFLAGS = -Wall -Wextra -Werror -MMD -g
 CXXFLAGS += -std=c++17
 CXXFLAGS += -fsanitize=address
 
-SRCS = main.cpp
+SRCS = main.cpp Span.cpp
 OBJS_DIR = objs/
 OBJS_O = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_O))

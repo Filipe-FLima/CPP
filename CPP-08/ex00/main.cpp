@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:03:33 by flima             #+#    #+#             */
-/*   Updated: 2025/11/05 14:36:00 by flima            ###   ########.fr       */
+/*   Updated: 2025/11/07 11:11:33 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main()
     {
 		try
 		{
-			std::cout << "\nNormal array of int..." << std::endl;
+			std::cout << "\nC-style array of int..." << std::endl;
 			int array[]{1, 78, 45, 66, 2};
 			auto it(easyfind(array, 78));
 			auto index{std::distance(std::begin(array), it)};
