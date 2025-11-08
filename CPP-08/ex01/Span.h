@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:32:45 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/07 14:32:50 by flima            ###   ########.fr       */
+/*   Updated: 2025/11/08 13:25:55 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Span
 
 		std::vector<int>::const_iterator begin() const;
 		std::vector<int>::const_iterator end() const;
+		unsigned int	getFilledIdx() const;
         void    addNumber(int num);
 		void	printElements() const;
         unsigned int longestSpan() const;

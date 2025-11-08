@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:32:42 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/07 14:56:41 by flima            ###   ########.fr       */
+/*   Updated: 2025/11/08 13:49:54 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ std::vector<int>::const_iterator Span::end() const
 	return _num.end();
 }
 
+unsigned int Span::getFilledIdx() const
+{
+	return _filledIdx;
+}
+
 Span::~Span()
 {
 	
@@ -65,12 +70,14 @@ void Span::printElements() const
 
 void Span::addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end)
 {
+	if (_filledIdx == _num.size())
+		throw MaxCapacity();
 	if (std::distance(_num.cbegin(), begin) < 0 || 
+		std::distance(_num.cbegin(), end) < 0 ||
+		std::distance(_num.cend(), begin) >= 0 ||
 		std::distance(_num.cend(), end) > 0)
 		throw std::out_of_range("Iterator out of range.");
-	int i = std::distance(begin, _num.cbegin() + _filledIdx); /// for debug // remove after 
-	std::cout << i << std::endl;
-	if (std::distance(begin, _num.cbegin() + _filledIdx) < 0) //testar condicao
+	if (std::distance(begin, _num.cbegin() + _filledIdx) < 0)
 		throw std::runtime_error("Can not add element out of sequence.");
 	
 	std::random_device	seed;
@@ -87,7 +94,7 @@ void Span::addRange(std::vector<int>::const_iterator begin, std::vector<int>::co
 
 unsigned int Span::shortestSpan() const
 {
-	if (_filledIdx < 1)
+	if (_filledIdx <= 1)
 		throw NotEnoughElements();
 		
 	std::vector<int> tmp(_num.begin(), _num.begin() + _filledIdx);
@@ -106,7 +113,7 @@ unsigned int Span::shortestSpan() const
 
 unsigned int Span::longestSpan() const
 {
-	if (_filledIdx < 1)
+	if (_filledIdx <= 1)
 		throw NotEnoughElements();
 	auto minIt = std::min_element(_num.begin(), _num.begin() + _filledIdx);
 	auto maxIt = std::max_element(_num.begin(), _num.begin() + _filledIdx);
