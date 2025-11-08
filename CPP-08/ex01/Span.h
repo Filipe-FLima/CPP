@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:32:45 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/08 13:25:55 by flima            ###   ########.fr       */
+/*   Updated: 2025/11/08 14:08:02 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ class Span
         Span(const Span& other);
         Span& operator=(const Span& other);
 
-		std::vector<int>::const_iterator begin() const;
-		std::vector<int>::const_iterator end() const;
+        void   			addNumber(int num);
+        unsigned int 	longestSpan() const;
+        unsigned int 	shortestSpan() const;
 		unsigned int	getFilledIdx() const;
-        void    addNumber(int num);
-		void	printElements() const;
-        unsigned int longestSpan() const;
-        unsigned int shortestSpan() const;
-		void	addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
+		void			printElements() const;
+		std::vector<int>::const_iterator end() const;
+		std::vector<int>::const_iterator begin() const;
+		void			addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
     
 	class MaxCapacity : public std::exception
 	{
