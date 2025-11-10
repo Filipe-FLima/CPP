@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 15:45:00 by flima             #+#    #+#             */
-/*   Updated: 2025/11/08 19:24:41 by flima            ###   ########.fr       */
+/*   Updated: 2025/11/10 15:13:54 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,29 @@
 # define MUTANTSTACK_H
 
 #include <algorithm>
-#include <exception>
 #include <iostream>
 #include <iterator>
-#include <vector>
+#include <stack>
 
 template <typename T>
-class	MutantStack
+class	MutantStack : public std::stack<T>
 {
-	private:
-		std::vector<T> _container;
-	
+
 	public:
 		~MutantStack() = default;
 		MutantStack() = default;
 		MutantStack(const MutantStack& other) = default;
 		MutantStack& operator=(const MutantStack& other) = default;
 		
-		using value_type = T;
-		using size_type = typename std::vector<T>::size_type;
-		using iterator = typename std::vector<T>::iterator;
-		using const_iterator = typename std::vector<T>::const_iterator;
+		using iterator = typename std::stack<T>::container_type::iterator;
+		using const_iterator = typename std::stack<T>::container_type::const_iterator;
 		
-		void		push(const T& element); //add element to the and of stack
-		void		pop(); //remove last in element from stack;
-		T& 			top(); //return the last in element
-		const T& 	top() const; //const top 
-		bool		empty() const noexcept; //return true if stack is empty
-		size_type	size() const noexcept; //size of stack
-		void		swap(MutantStack<T>& other) noexcept;
-
-		iterator begin();
-		iterator end();
-		const_iterator begin() const;
-		const_iterator end() const;
-		
+		iterator begin() {return this->c.begin();}
+		iterator end() { return this->c.end();}
+		const_iterator cbegin() const {return this->c.cbegin();}
+		const_iterator cend() const {return this->c.cend();}
 				
 };
-
-#include "MutantStack.tpp"
 
 #endif
 
