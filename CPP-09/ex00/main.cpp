@@ -6,28 +6,46 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 21:09:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/11 21:36:54 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/12 20:35:22 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-bool isFileValid(std::string fileName)
+std::ifstream isFileValid(std::string fileName, std::string header)
 {
     std::ifstream file(fileName);
     if (!file.is_open())
-        return false;
-    
+        throw std::runtime_error("Can not open file " + fileName);
     std::string line;
     getline(file, line);
-    if (line != "Data | value")
-        return false;
-    return true;
+    if (line != header)
+        throw std::runtime_error("Invalid header file " + fileName);
+    return file;
 }
 
 int main() 
 {
-
+    std::ifstream dataFile;
+    try
+    {
+        dataFile = isFileValid("data1.csv", "date,exchange_rate");
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        return 1;
+    }
+    
+    Data rates(dataFile, ',');
+    // rates.printData("date,exchange_rate");
+    if (!rates.isFormValid())
+    {
+        std::cout << "Ivalid format.\n";
+        return 1;
+    }
+    std::cout << "Valid\n";
+    return 0;
     
     // map<string, double> rate = {
     //     {"2009-01-02", 1.0},
