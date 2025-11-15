@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 21:09:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/12 20:35:22 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/15 23:19:32 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,25 @@ std::ifstream isFileValid(std::string fileName, std::string header)
 {
     std::ifstream file(fileName);
     if (!file.is_open())
-        throw std::runtime_error("Can not open file " + fileName);
+        throw std::runtime_error("Error: Could not open file " + fileName);
     std::string line;
     getline(file, line);
     if (line != header)
-        throw std::runtime_error("Invalid header file " + fileName);
+        throw std::runtime_error("Error: Invalid header file " + fileName);
     return file;
 }
 
-int main() 
+int main(int argc, char **argv) 
 {
+    if (argc != 2)
+        std::cout << "Error: could not open the file.\n";
+        //CPP-09/ex00/
+    std::ifstream inputFile;
     std::ifstream dataFile;
     try
     {
-        dataFile = isFileValid("data1.csv", "date,exchange_rate");
+        dataFile = isFileValid("data.csv", "date,exchange_rate");
+        inputFile = isFileValid(argv[1], "date | value");
     }
     catch(const std::exception& e)
     {
@@ -38,13 +43,17 @@ int main()
     }
     
     Data rates(dataFile, ',');
-    // rates.printData("date,exchange_rate");
-    if (!rates.isFormValid())
-    {
-        std::cout << "Ivalid format.\n";
-        return 1;
-    }
-    std::cout << "Valid\n";
+    Data values(inputFile, '|'); // can not be map 
+    
+    rates.setFileName("data.csv");
+    rates.setHeader("date,exchange_rate");
+
+    values.setFileName(argv[1]);
+    values.setHeader("date | value");
+    
+    values.printData();
+    // rates.exchangeBTC(values);
+    
     return 0;
     
     // map<string, double> rate = {
