@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 21:11:23 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/15 22:59:44 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/17 14:28:24 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,6 @@ void Data::setFileName(const std::string &name)
     fileName = name;
 }
 
-bool Data::isFormValid(const_iterator& it) const
-{
-    
-    if (!isValidDate(it->first))
-          return false;
-    return true;
-}
 
 Data::const_iterator Data::cbegin() const
 {
@@ -81,48 +74,93 @@ Data::const_iterator Data::cend() const
     return data.cend();
 }
 
-void Data::exchangeBTC(const Data &obj) const
+static void	reWriteOS(std::ostringstream& os, const std::string& newstr)
 {
-    std::ostringstream output;
-    obj.printData();
-    // for (const_iterator it = obj.cbegin(); it != obj.cend(); ++it)
-    // {
-    //     const_iterator itDB;
+	os.str("");
+    os.clear();
+	os << newstr;
+}
+static void resultValue(Data::const_iterator itDB, const std::string& _value, std::ostringstream& os, const std::string& date)
+{
+    float value;
+    float DB;
+
+    try
+    {
+        value = std::stof(_value);
+        DB = std::stof(itDB->second);
+    }
+    catch(const std::out_of_range& e)
+    {
+		reWriteOS(os, "Error: too large number.");
+        return;
+    }
+	catch(const std::exception& e)
+	{
+		reWriteOS(os, "Error: Invalid value.");
+        return;
+	}
+	if (value == 0)
+	{
+		reWriteOS(os, date + " => 0 = 0");
+        return;
+	}
+    if (std::signbit(value) || std::signbit(DB))
+    {
+		reWriteOS(os, "Error: not a possitive number.");
+        return;
+    }
+	if (value > 1000)
+	{
+		reWriteOS(os, "Error: too large number.");
+        return;
+	}
+    float result = value * DB;
+    os << result;
+}
+
+void Data::exchangeBTC(const std::string& date, const std::string& value) const
+{
+    std::ostringstream	output;
+	
+    const_iterator itDB;
         
-    //     if (obj.isFormValid(it))
-    //     {
-    //         std::cout << "Error: bad input => " << it->first << '\n'; 
-    //         continue;
-    //     }
-        
-    //     output << it->first << " => " << it->second << " ";
-        
-    //     try
-    //     {
-    //         std::cout << it->first << '\n';
-    //         itDB = find(it);
-            
-    //         std::cout << itDB->first << '\n';
-    //     }
-    //     catch (std::exception& e)
-    //     {
-    //         std::cout << e.what() << std::endl;
-    //         output.str("");
-    //         output.clear();
-    //         continue;
-    //     }
-    //     if (!isFormValid(itDB))
-    //     {
-    //         output.str("");
-    //         output.clear();
-    //         output << "Error: bad input => " << itDB->first;   
-    //     }
-    //     else 
-    //         resultValue(itDB, it, output);
-    //     std::cout << output.str() << std::endl;
-    // }
+	if (!isFormValid(date) || value == "")
+	{
+		std::cout << "Error: bad input => " << date << '\n'; 
+		return;
+	}
+	
+	// output << std::fixed << std::setprecision(2);
+	output << date << " => " << value << " = ";
+	
+	try
+	{
+		itDB = find(date);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+		return;
+	}
+	resultValue(itDB, value, output, date);
+	std::cout << output.str() << std::endl;
     
 }
+
+Data::const_iterator Data::find(const std::string& date) const
+{
+    auto itFound = data.find(date);
+    if (itFound == data.end())
+    {
+        itFound = data.lower_bound(date);
+        if (itFound == data.begin())
+            throw std::runtime_error("Error: date not found in DataBase.");
+        itFound--;
+    }
+    return itFound;
+}
+
 
 static  int convertDateValue(std::string value)
 {
@@ -139,30 +177,30 @@ static  int convertDateValue(std::string value)
     return _value;
 }
 
-static bool    isValidDateFormat(const std::string& data)
+static bool    isValidDateFormat(const std::string& date)
 {
-    if (data.size() != 10)
+    if (date.size() != 10)
         return false;
-    if (data[4] != '-' || data[7] != '-')
+    if (date[4] != '-' || date[7] != '-')
         return false;
     
-    for (size_t i = 0; i < data.size(); ++i)
+    for (size_t i = 0; i < date.size(); ++i)
     {
         if (i == 4 || i == 7)
             continue;
-        if(!std::isdigit(data[i]))
+        if(!std::isdigit(date[i]))
             return false; 
     }
     return true;
 }
 
-bool Data::isValidDate(const std::string& data) const
+static bool isValidDate(const std::string& date)
 {
-    if (!isValidDateFormat(data))
+    if (!isValidDateFormat(date))
         return false;
-    int year = convertDateValue(data.substr(0, 4));
-    int month = convertDateValue(data.substr(5, 7));
-    int day = convertDateValue(data.substr(8, 10));
+    int year = convertDateValue(date.substr(0, 4));
+    int month = convertDateValue(date.substr(5, 7));
+    int day = convertDateValue(date.substr(8, 10));
 
     if (year == -1 || month == -1 || day == -1)
         return false;
@@ -183,42 +221,10 @@ bool Data::isValidDate(const std::string& data) const
     return true;
 }
 
-Data::const_iterator Data::find(const_iterator& it) const
+bool isFormValid(const std::string& date)
 {
-    auto itFound = data.find(it->first);
-    if (itFound == data.end())
-    {
-        itFound = data.lower_bound(it->first);
-        if (itFound == data.begin())
-            throw std::runtime_error("Error: date not found in DataBase.");
-        itFound--;
-    }
-    return itFound;
+    
+    if (isValidDate(date))
+          return true;
+    return false;
 }
-
-void Data::resultValue(const_iterator itDB, const_iterator itObj, std::ostringstream& os) const
-{
-    float value;
-    float DB;
-
-    try
-    {
-        value = std::stof(itObj->second);
-        DB = std::stof(itDB->second);
-    }
-    catch(const std::out_of_range& e)
-    {
-        os.clear();
-        os << "Error: too large number.";
-        return;
-    }
-    if (std::signbit(value) || std::signbit(DB))
-    {
-        os.clear();
-        os << "Error: not a possitive number.";
-        return;
-    }
-    float result = value * DB;
-    os << result;
-}
-

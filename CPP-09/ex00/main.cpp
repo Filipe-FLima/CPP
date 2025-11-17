@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 21:09:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/15 23:19:32 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/17 14:11:25 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-std::ifstream isFileValid(std::string fileName, std::string header)
+static std::ifstream isFileValid(std::string fileName, std::string header)
 {
     std::ifstream file(fileName);
     if (!file.is_open())
@@ -24,13 +24,46 @@ std::ifstream isFileValid(std::string fileName, std::string header)
     return file;
 }
 
+std::string trim(std::string& s) 
+{
+    size_t first = s.find_first_not_of(' ');
+    size_t last = s.find_last_not_of(' ');
+    return s.substr(first, last - first + 1);
+}
+
+static void	btcExchange(const Data& data, std::ifstream& input)
+{
+	std::string line;
+
+	while (getline(input, line))
+	{
+		std::stringstream   ss(line);
+		std::string 		date;
+		std::string 		value;
+		
+		getline(ss, date, '|');
+		getline(ss, value, '|');
+		
+		if (date [date.size() - 1] == ' ' && value[0] == ' ')
+		{
+			date = trim(date);
+			value = trim(value);
+		}
+		data.exchangeBTC(date, value);
+	}
+	input.close();
+}
+
 int main(int argc, char **argv) 
 {
     if (argc != 2)
+	{
         std::cout << "Error: could not open the file.\n";
-        //CPP-09/ex00/
+		return 1;
+	}
     std::ifstream inputFile;
     std::ifstream dataFile;
+	
     try
     {
         dataFile = isFileValid("data.csv", "date,exchange_rate");
@@ -42,41 +75,10 @@ int main(int argc, char **argv)
         return 1;
     }
     
-    Data rates(dataFile, ',');
-    Data values(inputFile, '|'); // can not be map 
+    Data BtcRates(dataFile, ',');
     
-    rates.setFileName("data.csv");
-    rates.setHeader("date,exchange_rate");
-
-    values.setFileName(argv[1]);
-    values.setHeader("date | value");
-    
-    values.printData();
-    // rates.exchangeBTC(values);
-    
+    BtcRates.setFileName("data.csv");
+    BtcRates.setHeader("date,exchange_rate");
+	btcExchange(BtcRates, inputFile);
     return 0;
-    
-    // map<string, double> rate = {
-    //     {"2009-01-02", 1.0},
-    //     {"2009-01-05", 2.0},
-    //     {"2009-01-08", 3.0},
-    //     {"2009-01-11", 4.0}
-    // };
-
-    // string dataBuscada = "2009-01-07";
-    // auto it = rate.lower_bound(dataBuscada);
-    // cout << "Data exata encontrada: " << it->first
-    //           << "  rate = " << it->second << endl;
-    // // if (it == rate.begin()) {
-    // //     cout << "Nenhuma data anterior disponível." << endl;
-    // // } else if (it == rate.end() || it->first != dataBuscada) {
-    // //     // se passou do fim ou a chave não é igual, pegamos o anterior
-    // //     --it;
-    // //     cout << "Data mais próxima anterior: " << it->first
-    // //          << "  rate = " << it->second << endl;
-    // // } else {
-    // //     // encontrou exatamente
-    // //     cout << "Data exata encontrada: " << it->first
-    // //          << "  rate = " << it->second << endl;
-    // // }
 }
