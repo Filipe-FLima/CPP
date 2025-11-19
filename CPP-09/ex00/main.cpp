@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 21:09:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/17 14:11:25 by flima            ###   ########.fr       */
+/*   Updated: 2025/11/19 13:30:51 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,14 @@ static std::ifstream isFileValid(std::string fileName, std::string header)
 
 std::string trim(std::string& s) 
 {
+    std::string trimmed;
+    
     size_t first = s.find_first_not_of(' ');
     size_t last = s.find_last_not_of(' ');
-    return s.substr(first, last - first + 1);
+    
+    trimmed = s.substr(first, last - first + 1);
+    
+    return trimmed;
 }
 
 static void	btcExchange(const Data& data, std::ifstream& input)
@@ -49,6 +54,11 @@ static void	btcExchange(const Data& data, std::ifstream& input)
 			date = trim(date);
 			value = trim(value);
 		}
+        for (size_t i = 0; i < value.size(); ++i)
+        {   
+            if (!std::isdigit(value[i]))
+                value = "";
+        }
 		data.exchangeBTC(date, value);
 	}
 	input.close();
