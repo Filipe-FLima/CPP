@@ -50,4 +50,16 @@ int main(int argc, char **argv)
         std:: cerr << "Error: bad Polish mathematical expression.\n";
         return 1;   
     }
+    
+    try
+    {
+       RPN(argv[1]);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        return 1;
+    }
+    return 0;
+    
 }

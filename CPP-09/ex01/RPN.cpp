@@ -12,27 +12,42 @@
 
 #include "RPN.hpp"
 
+static int top_n_pop(std::stack<int>& tokens)
+{
+    int value = tokens.top();
+    tokens.pop();
+    return value;
+}
+
 static int add(std::stack<int> &tokens)
 {
-    int b = tokens.top();
-    tokens.pop();
-    int a = tokens.top();
+    int b = top_n_pop(tokens);
+    int a = top_n_pop(tokens);
     
     return  a + b;
 }
 
 static int subtract(std::stack<int> &tokens)
 {
+    int b = top_n_pop(tokens);
+    int a = top_n_pop(tokens);
+    
     return  a - b;
 }
 
 static int multiply(std::stack<int> &tokens)
 {
+    int b = top_n_pop(tokens);
+    int a = top_n_pop(tokens);
+    
     return  a * b;
 }
 
 static int divide(std::stack<int> &tokens)
 {
+    int b = top_n_pop(tokens);
+    int a = top_n_pop(tokens);
+    
     return  a / b;
 }
 
@@ -50,12 +65,14 @@ static int convertTokenNum(std::string& n)
     }
     if (_n > 9)
         throw std::runtime_error("Error: Number greater/equal than 10.");
+    return _n;
 }
-int     getOperator(char c)
+
+static int     getOperator(char c)
 {
     std::string cases("+-/*");
 
-    for (int i = 0; i < cases.size(); ++i)
+    for (size_t i = 0; i < cases.size(); ++i)
     {
         if (cases[i] == c)
             return i; 
@@ -63,20 +80,28 @@ int     getOperator(char c)
     return -1;
 }
 
-void    operations(std::stack<int>& tokens, std::string& _operator)
+static void   operations(std::stack<int>& tokens, std::string& _operator)
 {
     if (_operator.size() != 1)
         throw std::runtime_error("Error: band operator sign.");
-    
-    int _case = _operator[0];
-    
+    if (tokens.size() == 2)
+        throw std::runtime_error("Error: bad Polish mathematical expression.");
+    int _case = getOperator(_operator[0]);
+    if (_case == -1)
+        throw std::runtime_error("Error: band operator sign.");
     switch (_case)
     {
     case ADD:
-        /* code */
+        tokens.push(add(tokens));
         break;
-    
-    default:
+    case SUB:
+        tokens.push(subtract(tokens));
+        break;
+    case DIV:
+        tokens.push(divide(tokens));
+        break;
+    case MULT:
+        tokens.push(multiply(tokens));
         break;
     }
 }
@@ -85,7 +110,7 @@ void    RPN(std::string PMathEx)
 {
     std::istringstream      input(PMathEx);
     std::string             token;
-    std::stack<int>         tokensNum;
+    std::stack<int>         tokens;
 
     while (input >> token)
     {
@@ -93,7 +118,7 @@ void    RPN(std::string PMathEx)
         {
             try
             {
-                tokensNum.push(convertTokenNum(token));
+                tokens.push(convertTokenNum(token));
             }
             catch(const std::exception& e)
             {
@@ -101,7 +126,21 @@ void    RPN(std::string PMathEx)
             }
             continue;
         }
+        else
+        {
+             try
+            {
+                operations(tokens, token);
+            }
+            catch(const std::exception& e)
+            {
+                throw (e.what());
+            }
+        }
         
     }
-    
+
+    if (tokens.size() != 1)
+        throw std::runtime_error("Error: bad Polish mathematical expression.");
+    std::cout << tokens.top() << std::endl;
 }

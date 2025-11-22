@@ -27,5 +27,6 @@ enum operators
     MULT
 };
 
+void    RPN(std::string PMathEx);
 
 #endif

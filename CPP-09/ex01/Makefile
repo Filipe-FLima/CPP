@@ -21,7 +21,7 @@ CXXFLAGS = -Wall -Wextra -Werror -MMD -g
 CXXFLAGS += -std=c++17
 CXXFLAGS += -fsanitize=address
 
-SRCS = main.cpp BitcoinExchange.cpp
+SRCS = main.cpp RPN.cpp
 OBJS_DIR = objs/
 OBJS_O = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_O))
