@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:38:27 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/19 15:35:33 by filipe           ###   ########.fr       */
+/*   Updated: 2025/11/23 21:31:09 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void   operations(std::stack<int>& tokens, std::string& _operator)
 {
     if (_operator.size() != 1)
         throw std::runtime_error("Error: band operator sign.");
-    if (tokens.size() == 2)
+    if (tokens.size() < 2)
         throw std::runtime_error("Error: bad Polish mathematical expression.");
     int _case = getOperator(_operator[0]);
     if (_case == -1)
@@ -114,7 +114,19 @@ void    RPN(std::string PMathEx)
 
     while (input >> token)
     {
-        if (token.find_first_of("+-/*") == std::string::npos)
+        if (token.find_first_of("+-/*") != std::string::npos)
+        {
+            try
+            {
+                operations(tokens, token);
+            }
+            catch(const std::exception& e)
+            {
+                throw std::runtime_error(e.what());
+            }
+            continue;
+        }
+        else
         {
             try
             {
@@ -122,19 +134,7 @@ void    RPN(std::string PMathEx)
             }
             catch(const std::exception& e)
             {
-                throw (e.what());
-            }
-            continue;
-        }
-        else
-        {
-             try
-            {
-                operations(tokens, token);
-            }
-            catch(const std::exception& e)
-            {
-                throw (e.what());
+                throw std::runtime_error(e.what());
             }
         }
         
