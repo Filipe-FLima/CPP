@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeME.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 10:44:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/24 11:53:07 by filipe           ###   ########.fr       */
+/*   Updated: 2025/12/01 14:49:04 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ class PmergeME
         PmergeME(const PmergeME& other) = delete;
         PmergeME& operator=(const PmergeME& other) = delete;
     
-        // static void sort(intVector& c);
+        intVector sort(intVector c);
+		intVector merge_insertion(intVector c, intVector& pend);
         // static void sort(intDeque& c);
         static void fillContainer(intVector& c, intDeque& d, char **tokens);
         
