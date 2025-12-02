@@ -31,8 +31,8 @@ class PmergeME
         PmergeME(const PmergeME& other) = delete;
         PmergeME& operator=(const PmergeME& other) = delete;
     
-        intVector sort(intVector c);
-		intVector merge_insertion(intVector c, intVector& pend);
+        static intVector sort(intVector c);
+		//intVector merge_insertion(intVector c, intVector& pend);
         // static void sort(intDeque& c);
         static void fillContainer(intVector& c, intDeque& d, char **tokens);
         

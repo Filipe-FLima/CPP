@@ -23,15 +23,26 @@ int main(int argc, char **argv)
     try
     {
         PmergeME::fillContainer(v, d, ++argv);
-        std::cout << v[0] << " " << v[1] << " " << v[2] << std::endl;
-        std::cout << d[0] << " " << d[1] << " " << d[2] << std::endl;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
+
+    (void)d;
     
-    
+    intVector sorted = PmergeME::sort(v);
+
+    for (size_t i = 0; i < v.size(); ++i)
+    {
+        std::cout << v[i] << ' ';
+    }
+    std::cout << std::endl;
+    for (size_t i = 0; i < sorted.size(); ++i)
+    {
+        std::cout << sorted[i] << ' ';
+    }
+    std::cout << std::endl;
     
     return 0;
 }

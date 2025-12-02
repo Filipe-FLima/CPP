@@ -25,7 +25,7 @@ static intVector getInsertionSeq(intVector& pend)
 	std::unordered_set<int>	used;
 
 	jacob = genJacobSeq((int)pend.size());
-	for (int size = 0; size < pend.size() - 1; ++size)
+	for (size_t size = 0; size < pend.size() - 1; ++size)
 	{
 		int x;
 		if (size < jacob.size())
@@ -44,53 +44,23 @@ static intVector getInsertionSeq(intVector& pend)
 	return seq;
 
 }
-static void	binarySearch(int x, intVector& pend, intVector& mainChain)
-{
-	int left = 0, right = mainChain.size();
-	int value = pend[x - 1];
+static void	binarySearch(int x, int b, intVector& mainChain) //pend[0] has been inserted already // x = 3 2 5 idx = x -1
+{//i need pend index; pend position to insert, pend value and mainchain
+	int right = x - 2;
+    int left = 0;
 
-	while (true)
-	{
-		int index;
-		
-	
-	}
-}
-intVector PmergeME::sort(intVector c)
-{
-	if (c.size() <= 1)
-		return c;
-
-	size_t mid = c.size() / 2;
-	intVector greater, lower;
-	for (size_t i = 0; i < mid ; ++i)
-	{
-		if (c[i*2] < c[i*2+1]){
-			lower.push_back(i*2);
-			greater.push_back(c[i*2+1]);
-		}
-		else{
-			lower.push_back(c[i*2+1]);
-			greater.push_back(c[i*2]);
-		}
-	}
-
-	if (mid % 2 == 1)
-		lower.push_back(c[mid - 1]);
-	greater = merge_insertion(greater, lower);
-
-	intVector mainChain;
-	intVector &pend = lower;
-
-	mainChain.push_back(lower[0]);
-	pend.erase(pend.begin()); //check condition when pend is empty (right before last recursion call)
-	for (int i : greater)
-		mainChain.push_back(i);
-	
-
+    while (left < right)
+    {
+        int mid = (left + right) / 2;
+        if (mainChain[mid] < b)
+            left = mid + 1;
+        else
+            right = mid;
+    }
+    mainChain.insert(mainChain.begin() + left, x);
 }
 
-intVector PmergeME::merge_insertion(intVector c, intVector &pend)
+static intVector merge_insertion(intVector c, intVector &pend)
 {
 	if (c.size() <= 1)
 		return c;
@@ -124,6 +94,52 @@ intVector PmergeME::merge_insertion(intVector c, intVector &pend)
 	for (int i : greater)
 		mainChain.push_back(i);
 	
+    for (size_t i = 0; i < seqInsertion.size(); ++i)
+    {
+        int x = seqInsertion[i];
+        binarySearch(x, _pend[x -1], mainChain);
+    }
+    return mainChain;
+}
+
+intVector PmergeME::sort(intVector c)
+{
+	if (c.size() <= 1)
+		return c;
+
+	size_t mid = c.size() / 2;
+	intVector greater, lower;
+	for (size_t i = 0; i < mid ; ++i)
+	{
+		if (c[i*2] < c[i*2+1]){
+			lower.push_back(i*2);
+			greater.push_back(c[i*2+1]);
+		}
+		else{
+			lower.push_back(c[i*2+1]);
+			greater.push_back(c[i*2]);
+		}
+	}
+
+	if (mid % 2 == 1)
+		lower.push_back(c[mid - 1]);
+	greater = merge_insertion(greater, lower);
+
+	intVector mainChain;
+	intVector &pend = lower;
+    intVector seqInsertion = getInsertionSeq(pend);
+
+	mainChain.push_back(lower[0]);
+	for (int i : greater)
+		mainChain.push_back(i);
+	
+    for (size_t i = 0; i < seqInsertion.size(); ++i)
+    {
+        int x = seqInsertion[i];
+        binarySearch(x, pend[x -1], mainChain);
+    }
+    return mainChain;    
+
 }
 
 
