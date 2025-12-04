@@ -13,8 +13,6 @@ static intVector genJacobSeq(int pendSize)
 		prev = current;
 		current = j;
 	}
-	if (jacob[0] == jacob[1])
-		jacob.erase(jacob.begin());
 	return jacob;
 }
 
@@ -44,20 +42,85 @@ static intVector getInsertionSeq(intVector& pend)
 	return seq;
 
 }
-static void	binarySearch(int x, int b, intVector& mainChain) //pend[0] has been inserted already // x = 3 2 5 idx = x -1
+
+// int main()
+// {
+//     // Exemplo de vetor "pend"
+//     // intVector pend = {5, 3, 8, 1, 4, 2, 7};
+// 	intVector pend = {3, 5, 4};
+
+//     // Gerar Jacobsthal
+//     intVector jac = genJacobSeq(pend.size());
+
+//     std::cout << "Jacobsthal: ";
+//     for (int v : jac)
+//         std::cout << v << " ";
+//     std::cout << "\n";
+// 	std::cout << "Jacobsthal size: " << jac.size();
+// 	std::cout << "\n";
+
+//     // Gerar insertion sequence
+//     intVector seq = getInsertionSeq(pend);
+
+//     std::cout << "Insertion sequence: ";
+//     for (int v : seq)
+//         std::cout << v << " ";
+//     std::cout << "\n";
+// 	std::cout << "Jacobsthal size: " << seq.size();
+// 	std::cout << "\n";
+
+//     return 0;
+// }
+
+static void stableMove(int oldPos, int newPos, intVector& pend)
+{
+    int value = pend[oldPos];
+
+    if (newPos > oldPos) {
+        for (int i = oldPos; i < newPos; ++i)
+            pend[i] = pend[i + 1];
+        pend[newPos] = value;
+    } else {
+        for (int i = oldPos; i > newPos; --i)
+            pend[i] = pend[i - 1];
+        pend[newPos] = value;
+    }
+}
+
+static void	binarySearch(int x, int b, intVector& mainChain, intVector& pend) //pend[0] has been inserted already // x = 3 2 5 idx = x -1
 {//i need pend index; pend position to insert, pend value and mainchain
-	int right = x - 2;
+	int right = x;
     int left = 0;
 
-    while (left < right)
+    while (left <= right)
     {
         int mid = (left + right) / 2;
         if (mainChain[mid] < b)
             left = mid + 1;
         else
-            right = mid;
+            right = mid - 1;
     }
-    mainChain.insert(mainChain.begin() + left, x);
+    mainChain.insert(mainChain.begin() + left, b);
+	stableMove(x, left, pend);
+
+	
+}
+
+static void	binarySearch(int x, int b, intVector& mainChain) //pend[0] has been inserted already // x = 3 2 5 idx = x -1
+{//i need pend index; pend position to insert, pend value and mainchain
+	int right = x;
+    int left = 0;
+
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        if (mainChain[mid] < b)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    mainChain.insert(mainChain.begin() + left, b);
+	
 }
 
 static intVector merge_insertion(intVector c, intVector &pend)
@@ -81,23 +144,22 @@ static intVector merge_insertion(intVector c, intVector &pend)
 		}
 	}
 
-	if (mid % 2 == 1)
-		lower.push_back(c[mid - 1]);
+	if (c.size() % 2 == 1)
+		lower.push_back(c[c.size() - 1]);
 	greater = merge_insertion(greater, lower);
 
 	intVector mainChain;
 	intVector &_pend = lower;
-	intVector seqInsertion = getInsertionSeq(pend);
+	intVector seqInsertion = getInsertionSeq(_pend);
 
 	mainChain.push_back(lower[0]);
-	// _pend.erase(_pend.begin()); //check condition when pend is empty (right before last recursion call)
 	for (int i : greater)
 		mainChain.push_back(i);
 	
     for (size_t i = 0; i < seqInsertion.size(); ++i)
     {
         int x = seqInsertion[i];
-        binarySearch(x, _pend[x -1], mainChain);
+        binarySearch(x, _pend[x -1], mainChain, pend);
     }
     return mainChain;
 }
@@ -112,7 +174,7 @@ intVector PmergeME::sort(intVector c)
 	for (size_t i = 0; i < mid ; ++i)
 	{
 		if (c[i*2] < c[i*2+1]){
-			lower.push_back(i*2);
+			lower.push_back(c[i*2]);
 			greater.push_back(c[i*2+1]);
 		}
 		else{
@@ -121,8 +183,8 @@ intVector PmergeME::sort(intVector c)
 		}
 	}
 
-	if (mid % 2 == 1)
-		lower.push_back(c[mid - 1]);
+	if (c.size() % 2 == 1)
+		lower.push_back(c[c.size() - 1]);
 	greater = merge_insertion(greater, lower);
 
 	intVector mainChain;
