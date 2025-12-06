@@ -19,9 +19,19 @@
 #include <vector>
 #include <deque>
 #include <chrono>
+#include <concepts>
+
+struct pairInt
+{
+    int a;
+    int b;
+};
 
 using intVector = std::vector<int>;
 using intDeque = std::deque<int>;
+using pairVector = std::vector<pairInt>;
+using pairDeque = std::deque<pairInt>;
+
 
 class PmergeME
 {
@@ -37,6 +47,7 @@ class PmergeME
         static void fillContainer(intVector& c, intDeque& d, char **tokens);
         
     private:
+
         
 };
 

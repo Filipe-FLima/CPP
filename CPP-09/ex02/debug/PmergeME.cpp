@@ -89,8 +89,16 @@ static void stableMove(int oldPos, int newPos, intVector& pend)
 
 static void	binarySearch(int x, int b, intVector& mainChain, intVector& pend) //pend[0] has been inserted already // x = 3 2 5 idx = x -1
 {//i need pend index; pend position to insert, pend value and mainchain
-	int right = x;
-    int left = 0;
+	int right = std::min(x, (int)mainChain.size() - 1);
+    int left  = x-1; 
+
+	std::cerr << "\nMAIN: ";
+	for(int v: mainChain) std::cerr << v << ' ';
+
+	std::cerr << "\nPEND: ";
+	for(int v: pend) std::cerr << v << ' ';
+
+	std::cerr << "\ninserindo B=" << b << " (do par x="<<x<<")\n";
 
     while (left <= right)
     {
@@ -102,14 +110,21 @@ static void	binarySearch(int x, int b, intVector& mainChain, intVector& pend) //
     }
     mainChain.insert(mainChain.begin() + left, b);
 	stableMove(x, left, pend);
+	std::cerr << "\nMAIN: ";
+	for(int v: mainChain) std::cerr << v << ' ';
+
+	std::cerr << "\nPEND: ";
+	for(int v: pend) std::cerr << v << ' ';
+
+	std::cerr << "\ninserindo B=" << b << " (do par x="<<x<<")\n";
 
 	
 }
 
 static void	binarySearch(int x, int b, intVector& mainChain) //pend[0] has been inserted already // x = 3 2 5 idx = x -1
 {//i need pend index; pend position to insert, pend value and mainchain
-	int right = x;
-    int left = 0;
+	int right = std::min(x, (int)mainChain.size() - 1);
+    int left  = x-1; 
 
     while (left <= right)
     {
@@ -123,7 +138,7 @@ static void	binarySearch(int x, int b, intVector& mainChain) //pend[0] has been 
 	
 }
 
-static intVector merge_insertion(intVector c, intVector &pend)
+static intVector merge_insertion(intVector c, intVector &pend, int debug)
 {
 	if (c.size() <= 1)
 		return c;
@@ -146,7 +161,26 @@ static intVector merge_insertion(intVector c, intVector &pend)
 
 	if (c.size() % 2 == 1)
 		lower.push_back(c[c.size() - 1]);
-	greater = merge_insertion(greater, lower);
+	//debug
+	debug++;
+	std::cout << "As level " << debug << ": ";
+	for (auto i : greater)
+		std::cout << i << " ";
+	std::cout << "\n";
+
+	std::cout << "pend (Bs) previous level " << ": ";
+	for (auto i : pend)
+		std::cout << i << " ";
+	std::cout << "\n";
+
+	std::cout << "pend (Bs) current level " << debug << ": ";
+	for (auto i : lower)
+		std::cout << i << " ";
+	std::cout << "\n";
+	
+	//
+
+	greater = merge_insertion(greater, lower, debug);
 
 	intVector mainChain;
 	intVector &_pend = lower;
@@ -160,12 +194,29 @@ static intVector merge_insertion(intVector c, intVector &pend)
     {
         int x = seqInsertion[i];
         binarySearch(x, _pend[x -1], mainChain, pend);
+		//debug
+		std::cout << "As level " << debug << ": ";
+		for (auto i : greater)
+			std::cout << i << " ";
+		std::cout << "\n";
+
+		std::cout << "pend (Bs) previous level " << debug << ": ";
+		for (auto i : pend)
+			std::cout << i << " ";
+		std::cout << "\n";
+
+		std::cout << "pend (Bs) current level " << debug << ": ";
+		for (auto i : _pend)
+			std::cout << i << " ";
+		std::cout << "\n";
+		//
     }
     return mainChain;
 }
 
 intVector PmergeME::sort(intVector c)
 {
+	int debug = 0;
 	if (c.size() <= 1)
 		return c;
 
@@ -185,7 +236,20 @@ intVector PmergeME::sort(intVector c)
 
 	if (c.size() % 2 == 1)
 		lower.push_back(c[c.size() - 1]);
-	greater = merge_insertion(greater, lower);
+	
+	//debug
+	std::cout << "As level " << debug << ": ";
+	for (auto i : greater)
+		std::cout << i << " ";
+	std::cout << "\n";
+
+	std::cout << "pend (Bs) current level " << debug << ": ";
+	for (auto i : lower)
+		std::cout << i << " ";
+	std::cout << "\n";
+	//
+
+	greater = merge_insertion(greater, lower, debug);
 
 	intVector mainChain;
 	intVector &pend = lower;
@@ -199,6 +263,17 @@ intVector PmergeME::sort(intVector c)
     {
         int x = seqInsertion[i];
         binarySearch(x, pend[x -1], mainChain);
+		//debug
+		std::cout << "As level " << debug << ": ";
+		for (auto i : greater)
+			std::cout << i << " ";
+		std::cout << "\n";
+
+		std::cout << "pend (Bs) previous level " << debug << ": ";
+		for (auto i : pend)
+			std::cout << i << " ";
+		std::cout << "\n";
+		//
     }
     return mainChain;    
 

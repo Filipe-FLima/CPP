@@ -18,7 +18,7 @@ YELLOW  = \033[33m
 BOLD    = \033[1m
 
 CXXFLAGS = -Wall -Wextra -Werror -MMD -g
-CXXFLAGS += -std=c++17
+CXXFLAGS += -std=c++20
 CXXFLAGS += -fsanitize=address
 
 SRCS = main.cpp PmergeME.cpp
