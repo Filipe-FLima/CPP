@@ -54,6 +54,7 @@ class PmergeME
 		
         static intVector PmergeMe(intVector c);
 		static intDeque PmergeMe(intDeque c);
+		static intVector getInsertionSeq(size_t pendSize);
         static void fillContainer(intVector& c, intDeque& d, char **tokens);
 		
     private:
@@ -80,7 +81,7 @@ static void	binarySearch(int idx, int b, T& mainChain)
     while (left < right)
     {
         int mid = (left + right) / 2;
-		Pair::compCount++;
+		// Pair::compCount++;
         if (mainChain[mid] < b)
             left = mid + 1;
         else
@@ -99,7 +100,7 @@ T insertion(T& c, U& pairs)
 
 	if (c.size() % 2 == 1)
 		pend.push_back(c[c.size() - 1]);
-    intVector seqInsertion = getInsertionSeq(pend.size());
+    intVector seqInsertion = PmergeME::getInsertionSeq(pend.size());
 
     for (size_t i = 0; i < seqInsertion.size(); ++i)
     {
@@ -111,6 +112,7 @@ T insertion(T& c, U& pairs)
 			idx = easyFind(mainChain, pairs[x - 1].a);
         binarySearch(idx, pend[x - 1], mainChain);
     }
+	return mainChain;
 }
 
 template <typename T>
@@ -120,7 +122,6 @@ void insertionPair(T& left, T& right)
 		auto pos = std::lower_bound(left.begin(), left.end(), x);
 		left.insert(pos, x);
 	}
-
 }
 
 template <typename T>

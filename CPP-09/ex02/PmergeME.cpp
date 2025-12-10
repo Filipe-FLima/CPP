@@ -50,7 +50,7 @@ static intVector genJacobSeq(int pendSize)
 	return jacob;
 }
 
-static intVector getInsertionSeq(size_t pendSize)
+intVector PmergeME::getInsertionSeq(size_t pendSize)
 {
 	intVector	seq;
 	intVector	jacob;
@@ -86,6 +86,7 @@ intVector PmergeME::PmergeMe(intVector c)
 	{
 		int x = i*2; int y = i*2+1;
 
+		Pair::compCount++;
 		if (c[x] < c[y])
 			pairs.push_back(Pair(c[y], c[x]));
 		else
@@ -108,13 +109,14 @@ intDeque PmergeME::PmergeMe(intDeque c)
 	{
 		int x = i*2; int y = i*2+1;
 
+		Pair::compCount++;
 		if (c[x] < c[y])
 			pairs.push_back(Pair(c[y], c[x]));
 		else
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
-
 	pairs = merge_insertion(pairs);
+	std::cout << Pair::compCount << std::endl;
 	intDeque mainChain = insertion(c, pairs);
     return mainChain;    
 

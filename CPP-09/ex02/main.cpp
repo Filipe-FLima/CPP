@@ -28,22 +28,38 @@ int main(int argc, char **argv)
     {
         std::cerr << e.what() << '\n';
     }
-
-    (void)d;
     
-    intVector sorted = PmergeME::PmergeMe(v);
-
-	// std::cout << "compCount = " << Pair::compCount << "\n";
-    for (size_t i = 0; i < v.size(); ++i)
     {
-        std::cout << v[i] << ' ';
+        intVector sorted = PmergeME::PmergeMe(v);
+    
+        std::cout << "compCount = " << Pair::compCount << "\n";
+        for (size_t i = 0; i < v.size(); ++i)
+        {
+            std::cout << v[i] << ' ';
+        }
+        std::cout << std::endl;
+        for (size_t i = 0; i < sorted.size(); ++i)
+        {
+            std::cout << sorted[i] << ' ';
+        }
+        std::cout << std::endl;
     }
     std::cout << std::endl;
-    for (size_t i = 0; i < sorted.size(); ++i)
+    Pair::compCount = 0;
     {
-        std::cout << sorted[i] << ' ';
-    }
-    std::cout << std::endl;
+        intDeque sorted = PmergeME::PmergeMe(d);
     
+        std::cout << "compCount = " << Pair::compCount << "\n";
+        for (size_t i = 0; i < v.size(); ++i)
+        {
+            std::cout << v[i] << ' ';
+        }
+        std::cout << std::endl;
+        for (size_t i = 0; i < sorted.size(); ++i)
+        {
+            std::cout << sorted[i] << ' ';
+        }
+        std::cout << std::endl;
+    }
     return 0;
 }
