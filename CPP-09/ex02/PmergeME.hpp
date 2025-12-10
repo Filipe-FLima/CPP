@@ -47,14 +47,13 @@ class PmergeME
 				
 		};
 		
-		
         PmergeME() = delete;
         ~PmergeME() = delete;
         PmergeME(const PmergeME& other) = delete;
         PmergeME& operator=(const PmergeME& other) = delete;
 		
-		
         static intVector PmergeMe(intVector c);
+		static intDeque PmergeMe(intDeque c);
         static void fillContainer(intVector& c, intDeque& d, char **tokens);
 		
     private:
@@ -73,6 +72,88 @@ int easyFind(T& c, int a)
 	return (int)idx;
 }
 
+template <typename T>
+static void	binarySearch(int idx, int b, T& mainChain)
+{
+	int &right = idx;
+    int left  = 0; 
+    while (left < right)
+    {
+        int mid = (left + right) / 2;
+		Pair::compCount++;
+        if (mainChain[mid] < b)
+            left = mid + 1;
+        else
+            right = mid;
+    }
+    mainChain.insert(mainChain.begin() + left, b);
+}
+
+template <typename T, typename U>
+T insertion(T& c, U& pairs)
+{
+	T mainChain;
+	T pend;
+
+	getMainChain_N_Pend(mainChain, pend, pairs);
+
+	if (c.size() % 2 == 1)
+		pend.push_back(c[c.size() - 1]);
+    intVector seqInsertion = getInsertionSeq(pend.size());
+
+    for (size_t i = 0; i < seqInsertion.size(); ++i)
+    {
+		int idx;
+        int x = seqInsertion[i];
+		if ((size_t)(x - 1) == pairs.size())
+			idx = mainChain.size();
+		else 
+			idx = easyFind(mainChain, pairs[x - 1].a);
+        binarySearch(idx, pend[x - 1], mainChain);
+    }
+}
+
+template <typename T>
+void insertionPair(T& left, T& right)
+{
+	for (Pair x : right){
+		auto pos = std::lower_bound(left.begin(), left.end(), x);
+		left.insert(pos, x);
+	}
+
+}
+
+template <typename T>
+T merge_insertion(T& c)
+{
+	if (c.size() <= 1)
+		return c;
+	
+	size_t mid = c.size() / 2;
+
+	T left(c.begin(), c.begin() + mid);
+	T right(c.begin() + mid, c.end());
+
+	left = merge_insertion(left);
+	right = merge_insertion(right);
+
+	insertionPair(left, right);
+	return left;
+	
+}
+
+template <typename T, typename U>
+void getMainChain_N_Pend(T& m, T& pend, U& p)
+{
+	m.push_back(p[0].b);
+	m.push_back(p[0].a);
+	pend.push_back(p[0].b);
+	for (size_t i = 1; i < p.size(); ++i)
+	{
+		m.push_back(p[i].a);
+		pend.push_back(p[i].b);
+	}
+}
 
 
 #endif

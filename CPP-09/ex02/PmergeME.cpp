@@ -50,20 +50,20 @@ static intVector genJacobSeq(int pendSize)
 	return jacob;
 }
 
-static intVector getInsertionSeq(intVector& pend) //template
+static intVector getInsertionSeq(size_t pendSize)
 {
 	intVector	seq;
 	intVector	jacob;
 	std::unordered_set<int>	used;
 
-	jacob = genJacobSeq((int)pend.size());
-	for (size_t size = 0; size < pend.size() - 1; ++size)
+	jacob = genJacobSeq((int)pendSize);
+	for (size_t size = 0; size < pendSize - 1; ++size)
 	{
 		int x;
 		if (size < jacob.size())
 			x = jacob[size];
 		else
-			x = pend.size();
+			x = pendSize;
 		while (x > 1)
 		{
 			if (!used.count(x)){
@@ -74,59 +74,6 @@ static intVector getInsertionSeq(intVector& pend) //template
 		}
 	}
 	return seq;
-}
-
-static void	binarySearch(int idx, int b, intVector& mainChain)
-{
-	int &right = idx;
-    int left  = 0; 
-    while (left < right)
-    {
-        int mid = (left + right) / 2;
-		Pair::compCount++;
-        if (mainChain[mid] < b)
-            left = mid + 1;
-        else
-            right = mid;
-    }
-    mainChain.insert(mainChain.begin() + left, b);
-}
-
-static void getMainChain_N_Pend(intVector& m, intVector& pend, pairVector& p) /// template
-{
-	m.push_back(p[0].b);
-	m.push_back(p[0].a);
-	pend.push_back(p[0].b);
-	for (size_t i = 1; i < p.size(); ++i)
-	{
-		m.push_back(p[i].a);
-		pend.push_back(p[i].b);
-	}
-}
-static void insertion(pairVector& left, pairVector& right) //template
-{
-	for (Pair x : right){
-		auto pos = std::lower_bound(left.begin(), left.end(), x);
-		left.insert(pos, x);
-	}
-
-}
-static pairVector merge_insertion(pairVector& c)
-{
-	if (c.size() <= 1)
-		return c;
-	
-	size_t mid = c.size() / 2;
-
-	pairVector left(c.begin(), c.begin() + mid);
-	pairVector right(c.begin() + mid, c.end());
-
-	left = merge_insertion(left);
-	right = merge_insertion(right);
-
-	insertion(left, right);
-	return left;
-	
 }
 
 intVector PmergeME::PmergeMe(intVector c)
@@ -145,27 +92,30 @@ intVector PmergeME::PmergeMe(intVector c)
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
 
+	pairs = merge_insertion(pairs);
+	intVector mainChain = insertion(c, pairs);
+    return mainChain;    
+
+}
+
+intDeque PmergeME::PmergeMe(intDeque c)
+{
+	
+	size_t mid = c.size() / 2;
+	pairDeque pairs;
+	
+	for (size_t i = 0; i < mid ; ++i)
+	{
+		int x = i*2; int y = i*2+1;
+
+		if (c[x] < c[y])
+			pairs.push_back(Pair(c[y], c[x]));
+		else
+			pairs.push_back(Pair(c[x], c[y]));;
+	}
 
 	pairs = merge_insertion(pairs);
-
-	intVector mainChain;
-	intVector pend;
-	getMainChain_N_Pend(mainChain, pend, pairs);
-
-	if (c.size() % 2 == 1)
-		pend.push_back(c[c.size() - 1]);
-    intVector seqInsertion = getInsertionSeq(pend);
-
-    for (size_t i = 0; i < seqInsertion.size(); ++i)
-    {
-		int idx;
-        int x = seqInsertion[i];
-		if ((size_t)(x - 1) == pairs.size())
-			idx = mainChain.size();
-		else 
-			idx = easyFind(mainChain, pairs[x - 1].a);
-        binarySearch(idx, pend[x - 1], mainChain);
-    }
+	intDeque mainChain = insertion(c, pairs);
     return mainChain;    
 
 }
