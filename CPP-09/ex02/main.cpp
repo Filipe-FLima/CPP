@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 10:49:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/24 11:58:38 by filipe           ###   ########.fr       */
+/*   Updated: 2025/12/08 11:30:04 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ int main(int argc, char **argv)
 
     (void)d;
     
-    intVector sorted = PmergeME::sort(v);
+    intVector sorted = PmergeME::PmergeMe(v);
 
+	// std::cout << "compCount = " << Pair::compCount << "\n";
     for (size_t i = 0; i < v.size(); ++i)
     {
         std::cout << v[i] << ' ';

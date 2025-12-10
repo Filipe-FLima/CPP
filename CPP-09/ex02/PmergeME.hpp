@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 10:44:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/12/01 14:49:04 by flima            ###   ########.fr       */
+/*   Updated: 2025/12/08 10:52:43 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,59 @@
 #include <chrono>
 #include <concepts>
 
-struct pairInt
-{
-    int a;
-    int b;
-};
 
 using intVector = std::vector<int>;
 using intDeque = std::deque<int>;
-using pairVector = std::vector<pairInt>;
-using pairDeque = std::deque<pairInt>;
-
 
 class PmergeME
 {
     public:
+		class Pair
+		{
+			private:
+				
+				
+			public:
+				static size_t compCount;	
+				int	a;
+				int b;
+				
+				Pair(int _a, int _b);
+				~Pair(){};
+				Pair(const Pair& other);
+				Pair& operator=(const Pair& other);
+				bool operator<(const Pair& other);
+				bool operator==(const int a);
+				
+		};
+		
+		
         PmergeME() = delete;
         ~PmergeME() = delete;
         PmergeME(const PmergeME& other) = delete;
         PmergeME& operator=(const PmergeME& other) = delete;
-    
-        static intVector sort(intVector c);
-		//intVector merge_insertion(intVector c, intVector& pend);
-        // static void sort(intDeque& c);
+		
+		
+        static intVector PmergeMe(intVector c);
         static void fillContainer(intVector& c, intDeque& d, char **tokens);
-        
+		
     private:
-
-        
+  
 };
+
+using pairVector = std::vector<PmergeME::Pair>;
+using pairDeque = std::deque<PmergeME::Pair>;
+using Pair = PmergeME::Pair;
+
+template <typename T>
+int easyFind(T& c, int a)
+{
+	auto it{std::find(c.begin(), c.end(), a)};
+	long int idx{std::distance(c.begin(), it)};
+	return (int)idx;
+}
+
+
 
 #endif
 
