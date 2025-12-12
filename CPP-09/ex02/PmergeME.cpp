@@ -116,7 +116,7 @@ intDeque PmergeME::PmergeMe(intDeque c)
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
 	pairs = merge_insertion(pairs);
-	std::cout << Pair::compCount << std::endl;
+	// std::cout << Pair::compCount << std::endl;
 	intDeque mainChain = insertion(c, pairs);
     return mainChain;    
 
@@ -161,4 +161,22 @@ void PmergeME::fillContainer(intVector &v, intDeque &d, char **tokens)
         d.push_back(n);
         ++tokens;
     }
+}
+
+intVector PmergeME::getAsIndexs(size_t size)
+{
+	intVector idxs;
+
+	for (size_t i = 0; i < size; ++i)
+		idxs.push_back(i);
+	return idxs;
+}
+
+void PmergeME::updateIndexAs(int idx, intVector& As)
+{
+	for (size_t i = 0; i < As.size(); ++i)
+	{
+		if (As[i] >= idx)
+			As[i]++;
+	}
 }

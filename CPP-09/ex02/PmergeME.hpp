@@ -56,6 +56,8 @@ class PmergeME
 		static intDeque PmergeMe(intDeque c);
 		static intVector getInsertionSeq(size_t pendSize);
         static void fillContainer(intVector& c, intDeque& d, char **tokens);
+		static intVector getAsIndexs(size_t size);
+		static void updateIndexAs(int idx, intVector& As);
 		
     private:
   
@@ -66,29 +68,23 @@ using pairDeque = std::deque<PmergeME::Pair>;
 using Pair = PmergeME::Pair;
 
 template <typename T>
-int easyFind(T& c, int a)
-{
-	auto it{std::find(c.begin(), c.end(), a)};
-	long int idx{std::distance(c.begin(), it)};
-	return (int)idx;
-}
-
-template <typename T>
-static void	binarySearch(int idx, int b, T& mainChain)
+static int	binarySearch(int idx, int b, T& mainChain)
 {
 	int &right = idx;
     int left  = 0; 
     while (left < right)
     {
         int mid = (left + right) / 2;
-		// Pair::compCount++;
+		Pair::compCount++;
         if (mainChain[mid] < b)
             left = mid + 1;
         else
             right = mid;
     }
     mainChain.insert(mainChain.begin() + left, b);
+	return left;
 }
+
 
 template <typename T, typename U>
 T insertion(T& c, U& pairs)
@@ -102,15 +98,18 @@ T insertion(T& c, U& pairs)
 		pend.push_back(c[c.size() - 1]);
     intVector seqInsertion = PmergeME::getInsertionSeq(pend.size());
 
+	intVector indexAs = PmergeME::getAsIndexs(pairs.size());
+
     for (size_t i = 0; i < seqInsertion.size(); ++i)
     {
 		int idx;
         int x = seqInsertion[i];
-		if ((size_t)(x - 1) == pairs.size())
+		if ((size_t)(x - 1) == pairs.size()) //need it?
 			idx = mainChain.size();
 		else 
-			idx = easyFind(mainChain, pairs[x - 1].a);
-        binarySearch(idx, pend[x - 1], mainChain);
+			idx = indexAs[x - 1];
+        int pos = binarySearch(idx, pend[x - 1], mainChain);
+		PmergeME::updateIndexAs(pos, indexAs);
     }
 	return mainChain;
 }
@@ -155,7 +154,6 @@ void getMainChain_N_Pend(T& m, T& pend, U& p)
 		pend.push_back(p[i].b);
 	}
 }
-
 
 #endif
 
