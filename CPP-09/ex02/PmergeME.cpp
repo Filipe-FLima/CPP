@@ -20,6 +20,11 @@ PmergeME::Pair& PmergeME::Pair::operator=(const Pair& other)
 	return *this;
 }
 
+size_t PmergeME::Pair::getComp()
+{
+    return compCount;
+}
+
 bool PmergeME::Pair::operator<(const Pair &other)
 {
 	compCount++;
@@ -179,4 +184,14 @@ void PmergeME::updateIndexAs(int idx, intVector& As)
 		if (As[i] >= idx)
 			As[i]++;
 	}
+}
+
+PmergeME::SortTime::SortTime(): start(std::chrono::steady_clock::now())
+{
+}
+
+double PmergeME::SortTime::getTime()
+{
+	auto end = std::chrono::steady_clock::now();
+    return std::chrono::duration<double, std::micro>(end - start).count();
 }

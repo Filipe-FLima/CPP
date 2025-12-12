@@ -27,39 +27,38 @@ int main(int argc, char **argv)
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
+        return (1);
     }
     
     {
+        PmergeME::SortTime time;
         intVector sorted = PmergeME::PmergeMe(v);
-    
+        double _time = time.getTime();
+
         std::cout << "compCount = " << Pair::compCount << "\n";
+        std::cout << "Before: ";
         for (size_t i = 0; i < v.size(); ++i)
         {
             std::cout << v[i] << ' ';
         }
         std::cout << std::endl;
+        std::cout << "After: ";
         for (size_t i = 0; i < sorted.size(); ++i)
         {
             std::cout << sorted[i] << ' ';
         }
         std::cout << std::endl;
+        std::cout << "Time to process a range of " << v.size() << " elements with std::vector : " << _time << " us";
     }
     std::cout << std::endl;
-    Pair::compCount = 0;
     {
+        PmergeME::SortTime time;
         intDeque sorted = PmergeME::PmergeMe(d);
-    
-        std::cout << "compCount = " << Pair::compCount << "\n";
-        for (size_t i = 0; i < v.size(); ++i)
-        {
-            std::cout << v[i] << ' ';
-        }
-        std::cout << std::endl;
-        for (size_t i = 0; i < sorted.size(); ++i)
-        {
-            std::cout << sorted[i] << ' ';
-        }
-        std::cout << std::endl;
+        double _time = time.getTime();
+        std::cout << "Time to process a range of " << v.size() << " elements with std::vector : " << _time << " us" << std::endl;
     }
+
     return 0;
 }
+
+//implement - no duble numbers,
