@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 10:49:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/12/08 11:30:04 by flima            ###   ########.fr       */
+/*   Updated: 2025/12/15 11:40:47 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 int main(int argc, char **argv)
 {
-    (void)argc;
+    if (argc < 2)
+	{
+		std::cerr << "Error: missing arguments." << std::endl;
+		return (1);
+	}
     
     intVector v;
     intDeque  d;
@@ -48,14 +52,16 @@ int main(int argc, char **argv)
             std::cout << sorted[i] << ' ';
         }
         std::cout << std::endl;
-        std::cout << "Time to process a range of " << v.size() << " elements with std::vector : " << _time << " us";
+        std::cout << "Time to process a range of " << v.size() 
+			<< " elements with std::vector : " << _time << " us";
     }
     std::cout << std::endl;
     {
         PmergeME::SortTime time;
         intDeque sorted = PmergeME::PmergeMe(d);
         double _time = time.getTime();
-        std::cout << "Time to process a range of " << v.size() << " elements with std::vector : " << _time << " us" << std::endl;
+        std::cout << "Time to process a range of " << v.size() << 
+			" elements with std::deque : " << _time << " us" << std::endl;
     }
 
     return 0;

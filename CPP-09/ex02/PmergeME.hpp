@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 10:44:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/12/08 10:52:43 by flima            ###   ########.fr       */
+/*   Updated: 2025/12/15 11:39:11 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ class PmergeME
 			{
 				int idx;
 				int x = seqInsertion[i];
-				if (pend.size() % 2 == 1)
+				if ((size_t)x == pend.size() && c.size() % 2 == 1)
 					idx = mainChain.size();
 				else 
 					idx = indexAs[x - 1];

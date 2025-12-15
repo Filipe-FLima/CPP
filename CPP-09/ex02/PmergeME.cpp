@@ -87,6 +87,8 @@ intVector PmergeME::PmergeMe(intVector c)
 	size_t mid = c.size() / 2;
 	pairVector pairs;
 	
+	if (c.size() < 2)
+		return c;
 	for (size_t i = 0; i < mid ; ++i)
 	{
 		int x = i*2; int y = i*2+1;
@@ -109,7 +111,9 @@ intDeque PmergeME::PmergeMe(intDeque c)
 	
 	size_t mid = c.size() / 2;
 	pairDeque pairs;
-	
+
+	if (c.size() < 2)
+		return c;
 	for (size_t i = 0; i < mid ; ++i)
 	{
 		int x = i*2; int y = i*2+1;
@@ -172,7 +176,7 @@ intVector PmergeME::getAsIndexs(size_t size)
 {
 	intVector idxs;
 
-	for (size_t i = 0; i < size; ++i)
+	for (size_t i = 1; i < size + 1; ++i)
 		idxs.push_back(i);
 	return idxs;
 }
