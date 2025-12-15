@@ -81,7 +81,7 @@ intVector PmergeME::getInsertionSeq(size_t pendSize)
 	return seq;
 }
 
-intVector PmergeME::PmergeMe(intVector c)
+intVector PmergeME::PmergeMe(intVector& c)
 {
 	
 	size_t mid = c.size() / 2;
@@ -106,7 +106,7 @@ intVector PmergeME::PmergeMe(intVector c)
 
 }
 
-intDeque PmergeME::PmergeMe(intDeque c)
+intDeque PmergeME::PmergeMe(intDeque& c)
 {
 	
 	size_t mid = c.size() / 2;
@@ -124,8 +124,9 @@ intDeque PmergeME::PmergeMe(intDeque c)
 		else
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
-	pairs = merge_insertion(pairs);
-	intDeque mainChain = insertion(c, pairs);
+	intDeque As = getAsCont(c, pairs);
+	intDeque _mainChain = PmergeMe(As);
+	intDeque mainChain = insertion(c, _mainChain, pairs);
     return mainChain;    
 
 }
