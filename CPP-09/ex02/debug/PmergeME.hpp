@@ -97,18 +97,26 @@ class PmergeME
 			return left;
 		}
 
+		template <typename T> //find A and then return its pair, b
+		static int	easyFind(T& pairs, int a)
+		{
+			auto it = find(pairs.begin(), pairs.end(), a);
+			if (it == pairs.end())
+				return pairs[pairs.size() - 1].b;
+			return it->b;
+		}
 
-		template <typename T, typename U>
-		static T insertion(T& c, T& main, U& pairs)
+		template <typename T, typename U> ///here main
+		static T insertion(T& c, T& As, U& pairs)
 		{
 			T mainChain;
-			T pend;
+			int pendSize = pairs.size();
 
-			// getMainChain_N_Pend(mainChain, pend, pairs);
+			getMainChain(mainChain, As, pairs);
 
 			if (c.size() % 2 == 1)
-				pend.push_back(c[c.size() - 1]);
-			intVector seqInsertion = getInsertionSeq(pend.size());
+				pairs.push_back(Pair{-1, c[c.size() - 1]});
+			intVector seqInsertion = getInsertionSeq(pairs.size());
 
 			intVector indexAs = getAsIndexs(pairs.size());
 
@@ -116,55 +124,51 @@ class PmergeME
 			{
 				int idx;
 				int x = seqInsertion[i];
-				if ((size_t)x == pend.size() && c.size() % 2 == 1)
+				if (x == pendSize && c.size() % 2 == 1)
 					idx = mainChain.size();
 				else 
 					idx = indexAs[x - 1];
-				int pos = binarySearch(idx, pend[x - 1], mainChain);
+				int pos = binarySearch(idx, easyFind(pairs, pairs[x - 1].a), mainChain);
 				updateIndexAs(pos, indexAs);
 			}
 			return mainChain;
 		}
 
-		template <typename T>
-		static void insertionPair(T& left, T& right)
-		{
-			for (Pair x : right){
-				auto pos = std::lower_bound(left.begin(), left.end(), x);
-				left.insert(pos, x);
-			}
-		}
+		// template <typename T>
+		// static void insertionPair(T& left, T& right)
+		// {
+		// 	for (Pair x : right){
+		// 		auto pos = std::lower_bound(left.begin(), left.end(), x);
+		// 		left.insert(pos, x);
+		// 	}
+		// }
 
-		template <typename T>
-		static T merge_insertion(T& c)
-		{
-			if (c.size() <= 1)
-				return c;
+		// template <typename T>
+		// static T merge_insertion(T& c)
+		// {
+		// 	if (c.size() <= 1)
+		// 		return c;
 			
-			size_t mid = c.size() / 2;
+		// 	size_t mid = c.size() / 2;
 
-			T left(c.begin(), c.begin() + mid);
-			T right(c.begin() + mid, c.end());
+		// 	T left(c.begin(), c.begin() + mid);
+		// 	T right(c.begin() + mid, c.end());
 
-			left = merge_insertion(left);
-			right = merge_insertion(right);
+		// 	left = merge_insertion(left);
+		// 	right = merge_insertion(right);
 
-			insertionPair(left, right);
-			return left;
+		// 	insertionPair(left, right);
+		// 	return left;
 			
-		}
+		// }
 
 		template <typename T, typename U>
-		static void getMainChain_N_Pend(T& m, T& pend, U& p)
+		static void getMainChain(T& m, T& As, U& p)
 		{
-			m.push_back(p[0].b);
-			m.push_back(p[0].a);
-			pend.push_back(p[0].b);
-			for (size_t i = 1; i < p.size(); ++i)
-			{
-				m.push_back(p[i].a);
-				pend.push_back(p[i].b);
-			}
+			int b = easyFind(p, As[0]);
+			m.push_back(b);
+			for (size_t i = 0; i < As.size(); ++i)
+				m.push_back(As[i]);
 		}
 
 		template <typename T, typename U>
@@ -172,6 +176,7 @@ class PmergeME
 		{
 			T c;
 			
+			(void)type;
 			for (size_t i = 0; i < pairs.size(); ++i)
 				c.push_back(pairs[i].a);
 			return c;

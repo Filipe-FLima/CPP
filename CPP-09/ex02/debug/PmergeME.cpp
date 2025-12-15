@@ -100,8 +100,9 @@ intVector PmergeME::PmergeMe(intVector& c)
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
 
-	pairs = merge_insertion(pairs);
-	intVector mainChain = insertion(c, pairs);
+	intVector As = getAsCont(c, pairs);
+	intVector sorted = PmergeMe(As);
+	intVector mainChain = insertion(c, sorted, pairs);
     return mainChain;    
 
 }
@@ -125,8 +126,8 @@ intDeque PmergeME::PmergeMe(intDeque& c)
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
 	intDeque As = getAsCont(c, pairs);
-	intDeque _mainChain = PmergeMe(As);
-	intDeque mainChain = insertion(c, _mainChain, pairs);
+	intDeque sorted = PmergeMe(As);
+	intDeque mainChain = insertion(c, sorted, pairs);
     return mainChain;    
 
 }
