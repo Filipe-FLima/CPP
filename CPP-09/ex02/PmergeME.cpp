@@ -81,7 +81,7 @@ intVector PmergeME::getInsertionSeq(size_t pendSize)
 	return seq;
 }
 
-intVector PmergeME::PmergeMe(intVector c)
+intVector PmergeME::PmergeMe(intVector& c)
 {
 	
 	size_t mid = c.size() / 2;
@@ -100,13 +100,14 @@ intVector PmergeME::PmergeMe(intVector c)
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
 
-	pairs = merge_insertion(pairs);
-	intVector mainChain = insertion(c, pairs);
+	intVector As = getAsCont(c, pairs);
+	intVector sorted = PmergeMe(As);
+	intVector mainChain = insertion(c, sorted, pairs);
     return mainChain;    
 
 }
 
-intDeque PmergeME::PmergeMe(intDeque c)
+intDeque PmergeME::PmergeMe(intDeque& c)
 {
 	
 	size_t mid = c.size() / 2;
@@ -124,8 +125,9 @@ intDeque PmergeME::PmergeMe(intDeque c)
 		else
 			pairs.push_back(Pair(c[x], c[y]));;
 	}
-	pairs = merge_insertion(pairs);
-	intDeque mainChain = insertion(c, pairs);
+	intDeque As = getAsCont(c, pairs);
+	intDeque sorted = PmergeMe(As);
+	intDeque mainChain = insertion(c, sorted, pairs);
     return mainChain;    
 
 }
@@ -152,6 +154,7 @@ static void getNum(std::string token, int& n)
 void PmergeME::fillContainer(intVector &v, intDeque &d, char **tokens)
 {
     int                 n;
+	std::unordered_set<int>	_double;
 
     while (*tokens)
     {
@@ -165,10 +168,17 @@ void PmergeME::fillContainer(intVector &v, intDeque &d, char **tokens)
         }
         if (n < 0)
             throw std::runtime_error("Error: negative number in token " + std::string(*tokens));
-        v.push_back(n);
-        d.push_back(n);
+		if (!_double.count(n))
+		{
+			v.push_back(n);
+			d.push_back(n);
+			_double.insert(n);
+		}
+		else
+			throw std::runtime_error("Error: Duplicated number in token " + std::string(*tokens));
         ++tokens;
     }
+
 }
 
 intVector PmergeME::getAsIndexs(size_t size)
