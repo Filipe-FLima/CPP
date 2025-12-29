@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 10:49:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/12/15 11:40:47 by flima            ###   ########.fr       */
+/*   Updated: 2025/12/29 15:59:32 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
         intVector sorted = PmergeME::PmergeMe(v);
         double _time = time.getTime();
 
-        std::cout << "compCount = " << Pair::compCount << "\n";
+        // std::cout << "compCount = " << Pair::compCount << "\n";
         std::cout << "Before: ";
         for (size_t i = 0; i < v.size(); ++i)
         {
@@ -67,4 +67,3 @@ int main(int argc, char **argv)
     return 0;
 }
 
-//implement - no duble numbers,

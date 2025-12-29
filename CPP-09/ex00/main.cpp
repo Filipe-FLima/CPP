@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 21:09:46 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/19 13:30:51 by filipe           ###   ########.fr       */
+/*   Updated: 2025/12/29 15:21:46 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	btcExchange(const Data& data, std::ifstream& input)
 		}
         for (size_t i = 0; i < value.size(); ++i)
         {   
-            if (!std::isdigit(value[i]))
+            if (!std::isdigit(value[i]) && value[i] != '.' 
+				&& value[0] != '-' && value[0] != '+')
                 value = "";
         }
 		data.exchangeBTC(date, value);

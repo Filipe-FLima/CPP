@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 21:11:23 by filipe            #+#    #+#             */
-/*   Updated: 2025/11/17 14:28:24 by flima            ###   ########.fr       */
+/*   Updated: 2025/12/29 15:20:47 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ static void resultValue(Data::const_iterator itDB, const std::string& _value, st
 {
     float value;
     float DB;
-
+	size_t pos;
     try
     {
-        value = std::stof(_value);
+        value = std::stof(_value, &pos);
+		if (pos != _value.size())
+        	throw std::invalid_argument("invalid characters in value");
         DB = std::stof(itDB->second);
     }
     catch(const std::out_of_range& e)
@@ -156,7 +158,7 @@ Data::const_iterator Data::find(const std::string& date) const
         itFound = data.lower_bound(date);
         if (itFound == data.begin())
             throw std::runtime_error("Error: date not found in DataBase.");
-        itFound--;
+        --itFound;
     }
     return itFound;
 }
