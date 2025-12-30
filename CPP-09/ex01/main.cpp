@@ -32,6 +32,8 @@ static bool    isValidInput(std::string s)
     if (s.empty() || s.find_first_not_of(' ') == std::string::npos)
         return false;
     s = trim(s);
+    if (s.find_first_of(' ') == std::string::npos)
+        return false;
     for (size_t i = 0; i < s.size(); ++i)
     {
         if (!std::isdigit(s[i]) && !isValidOperator(s[i]))
