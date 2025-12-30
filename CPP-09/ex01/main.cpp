@@ -28,7 +28,9 @@ static bool     isValidOperator(char c)
 }
 
 static bool    isValidInput(std::string s)
-{
+{   
+    if (s.empty() || s.find_first_not_of(' ') == std::string::npos)
+        return false;
     s = trim(s);
     for (size_t i = 0; i < s.size(); ++i)
     {

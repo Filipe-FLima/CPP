@@ -109,7 +109,7 @@ static void resultValue(Data::const_iterator itDB, const std::string& _value, st
 	}
     if (std::signbit(value) || std::signbit(DB))
     {
-		reWriteOS(os, "Error: not a possitive number.");
+		reWriteOS(os, "Error: not a positive number.");
         return;
     }
 	if (value > 1000)
