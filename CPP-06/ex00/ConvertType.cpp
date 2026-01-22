@@ -6,7 +6,7 @@
 /*   By: flima <flima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:42:20 by filipe            #+#    #+#             */
-/*   Updated: 2025/10/27 13:01:41 by flima            ###   ########.fr       */
+/*   Updated: 2026/01/22 12:21:21 by flima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void convertChar(std::ostringstream& output, int value)
 	if (!(value >= 32 && value <= 126))
 		output << "Char: Non displayable\n";
 	else
-		output << "Char: '" << value << "'\n";
+		output << "Char: '" << (char)value << "'\n";
 	
 }
 
